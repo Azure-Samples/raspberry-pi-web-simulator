@@ -10,9 +10,10 @@
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "start": "react-scripts build",
+    "start": "node ./node_modules/react-scripts/bin/react-scripts.js build",
     "dev": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "homepage": "http://rpi-simu.azurewebsites.net/"
 }
