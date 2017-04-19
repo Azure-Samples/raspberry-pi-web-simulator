@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Banner from './component/banner/banner';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <Banner />,
   document.getElementById('root')
 );
