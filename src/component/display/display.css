@@ -1,0 +1,11 @@
+div img {
+    max-width: 100%;
+}
+
+.codeEditor {
+    width: 100%;
+}
+
+.leftPanel img{
+    margin-top: 24px;
+}

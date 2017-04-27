@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "react": "^15.5.4",
+    "react-ace": "^4.2.1",
+    "react-bootstrap": "^0.30.9",
+    "react-console-component": "^0.6.1",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {

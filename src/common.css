@@ -1,0 +1,11 @@
+.leftPanel{
+    float: left;
+    max-width: 48%;
+    min-width: 48%;
+    margin: 0 24px;
+}
+
+.rightPanel{
+    overflow: hidden;
+    margin: 0 0px;
+}
