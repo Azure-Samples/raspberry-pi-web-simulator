@@ -7,7 +7,7 @@ class IoTHub {
 
     this.D2CPoint = 'devices/' + this.connectionString['DeviceId'] + '/messages/events/';
     // here we only use mqtt
-    this.transport = new MQTT();
+    this.transport = new MQTT('wss://' + this.connectionString['HostName'], 443, '/$iothub/websocket?iothub-no-client-cert=true', this.connectionString['DeviceId']);
   };
 
   connect() {
@@ -22,14 +22,14 @@ class IoTHub {
       userName: calName(this.connectionString),
       password: calPasswd(this.connectionString),
     };
-    this.transport.connect('wss://' + this.connectionString['HostName'], 443, '/$iothub/websocket?iothub-no-client-cert=true', this.connectionString['DeviceId'], options, function (err) {
+    this.transport.connect(options, function (err) {
       if (err) {
         console.error('ERROR when connect to IoT hub: ' + JSON.stringify(err));
       } else {
         console.log('connected to your IoT hub');
         this.sendEvent('hahahaha', function (err) {
           if (err) {
-            console.error('ERROR when sending message' + err);
+            console.error('ERROR when sending message ' + err);
           } else {
             console.log('yes!');
           }
@@ -44,7 +44,7 @@ class IoTHub {
 
   sendEvent(message, cb) {
     if (!message) { cb('message is empty'); }
-    this.transport.publish(this.D2CPoint, message, null, cb);
+    this.transport.publish(this.D2CPoint, message, cb);
   }
 }
 
