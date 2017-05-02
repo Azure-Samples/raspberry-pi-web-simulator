@@ -19,7 +19,11 @@ class Banner extends Component {
 
     connect () {
         try {
-            this.hub = this.hub || new IotHub(this.state.connStr);
+            // distory the old one
+            if (this.hub) {
+                this.hub.distory();
+            }
+            this.hub = new IotHub(this.state.connStr);
             this.hub.connect();
         } catch (error) {
             console.error(error);

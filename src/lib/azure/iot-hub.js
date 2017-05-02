@@ -38,8 +38,8 @@ class IoTHub {
     }.bind(this));
   };
 
-  disconnect() {
-
+  distory() {
+    this.transport.disconnect();
   };
 
   sendEvent(message, cb) {
