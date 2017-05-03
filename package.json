@@ -6,6 +6,7 @@
     "azure-iot-common": "^1.1.6",
     "azure-iot-device": "^1.1.10",
     "bootstrap": "^3.3.7",
+    "browserify-fs": "^1.0.0",
     "paho-mqtt": "^1.0.3",
     "react": "^15.5.4",
     "react-ace": "^4.2.1",
