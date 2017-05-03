@@ -44,7 +44,11 @@ class MQTT {
   }
 
   disconnect() {
+    if (!this.connected) {
+      return;
+    }
     this.client.disconnect();
+    this.connected = false;
   }
 }
 

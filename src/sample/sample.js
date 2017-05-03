@@ -24,11 +24,16 @@ function sendMessage(msgCb, errCb) {
     });
 }
 
+var interval;
 function run(connStr, msgCb, errCb) {
     try {
         // distory the old one
         if (hub) {
             hub.distory();
+            hub = null;
+        }
+        if (interval) {
+            clearInterval(interval);
         }
         hub = new IotHub(connStr);
         hub.open(function (err) {
@@ -37,7 +42,7 @@ function run(connStr, msgCb, errCb) {
                 return;
             }
             messageId = 0;
-            setInterval(function () {
+            interval = setInterval(function () {
                 sendMessage(msgCb, errCb);
             }, 2000);
         });

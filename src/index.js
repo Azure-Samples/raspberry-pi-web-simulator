@@ -20,12 +20,18 @@ class Index extends Component {
   runApp(connStr) {
     var onMessage = function (message) {
       this.setState(function () {
-        return { consoleMsg: message };
+        return {
+          consoleMsg: message,
+          consoleErr: ''
+        };
       });
     }.bind(this);
     var onError = function (error) {
       this.setState(function () {
-        return { consoleErr: error.message || JSON.stringify(error) };
+        return {
+          consoleMsg: '',
+          consoleErr: error.message || JSON.stringify(error)
+        };
       });
     }.bind(this);
     sample(connStr, onMessage, onError);

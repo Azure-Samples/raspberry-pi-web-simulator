@@ -11,7 +11,6 @@ class MyConsole extends Component {
     }
 
     componentDidUpdate() {
-        console.log(JSON.stringify(this.props));
         this.writeLine(this.props.message);
         this.writeLine(this.props.error);
     }
