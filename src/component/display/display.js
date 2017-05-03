@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import Console from '../console/console.js'
-
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
+
+import {index} from '../../data/index.js';
 
 import './display.css';
 import '../../common.css'
@@ -11,7 +12,11 @@ import '../../common.css'
 class Display extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            indexFile: index()
+        }
     }
+
     render() {
         return (
             <div>
@@ -27,6 +32,9 @@ class Display extends Component {
                         width='100%'
                         showPrintMargin={false}
                         tabSize={2}
+                        defaultValue={this.state.indexFile}
+                        value={this.state.indexFile}
+                        readOnly={true}
                         />
                     <Console message={this.props.consoleMsg} error={this.props.consoleErr}/>
                 </div>

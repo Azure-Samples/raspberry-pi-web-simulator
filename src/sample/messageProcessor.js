@@ -2,7 +2,7 @@ function random(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-function getMessage(messageId, cb) {
+export function getMessage(messageId, cb) {
     var data = {
         temperature: random(20, 31),
         humidity: random(60, 80)
@@ -14,5 +14,3 @@ function getMessage(messageId, cb) {
         humidity: data.humidity
     }), data.temperature > 30);
 }
-
-module.exports.getMessage = getMessage;

@@ -1,6 +1,6 @@
 import IotHub from '../lib/azure/iot-hub.js';
 import { Message  as IotHubMessage } from 'azure-iot-device'
-import messageProcessor from './messageProcessor.js';
+import { getMessage } from './messageProcessor.js';
 
 var hub = null;
 var messageId = 0;
@@ -9,7 +9,7 @@ function blinkLED() { }
 
 function sendMessage(msgCb, errCb) {
     messageId++;
-    messageProcessor.getMessage(messageId, function (content, temperatureAlert) {
+    getMessage(messageId, function (content, temperatureAlert) {
         var message = new IotHubMessage(content);
         message.properties.add('temperatureAlert', temperatureAlert ? 'true' : 'false');
         msgCb('Sending message: ' + content);
@@ -39,7 +39,7 @@ function run(connStr, msgCb, errCb) {
             messageId = 0;
             setInterval(function () {
                 sendMessage(msgCb, errCb);
-            }, 10000);
+            }, 2000);
         });
 
     } catch (error) {
@@ -47,4 +47,4 @@ function run(connStr, msgCb, errCb) {
     }
 }
 
-module.exports = run;
+export default run;

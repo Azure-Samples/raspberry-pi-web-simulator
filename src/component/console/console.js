@@ -28,7 +28,7 @@ class MyConsole extends Component {
     }
 
     promptLabel() {
-        return 'pi@raspberrypi:~ $ ';
+        return '> ';
     }
 
     render() {
