@@ -9,6 +9,9 @@ import './display.css';
 import '../../common.css'
 
 class Display extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div>
@@ -25,7 +28,7 @@ class Display extends Component {
                         showPrintMargin={false}
                         tabSize={2}
                         />
-                    <Console />
+                    <Console message={this.props.consoleMsg} error={this.props.consoleErr}/>
                 </div>
             </div>
         );

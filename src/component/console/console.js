@@ -7,6 +7,20 @@ class MyConsole extends Component {
     constructor(props) {
         super(props);
         this.echo = this.echo.bind(this);
+        this.writeLine = this.writeLine.bind(this);
+    }
+
+    componentDidUpdate() {
+        console.log(JSON.stringify(this.props));
+        this.writeLine(this.props.message);
+        this.writeLine(this.props.error);
+    }
+
+    writeLine(msg) {
+        if (!msg) { return; }
+        this.myConsole.acceptLine();
+        this.myConsole.log(msg);
+        this.myConsole.return();
     }
 
     echo(text) {
@@ -19,11 +33,11 @@ class MyConsole extends Component {
 
     render() {
         return (
-            <Console ref={(Console) => {this.myConsole = Console;}}
-            handler={this.echo}
-            promptLabel={this.promptLabel}
-            autofocus={true}
-            />
+            <Console ref={(Console) => { this.myConsole = Console; } }
+                handler={this.echo}
+                promptLabel={this.promptLabel}
+                value={this.props.error}
+                />
         );
     }
 }
