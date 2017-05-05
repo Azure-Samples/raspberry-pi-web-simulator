@@ -1,0 +1,38 @@
+.codeEditor {
+    width: 100%;
+}
+
+.tabBar{
+    width: 100%;
+    display: -moz-box;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;   
+    background-color: #323327;
+    color: #CCCCCC;
+    padding: 0 47px;
+}
+
+.tabBar .onActive{
+    background-color: #272822; 
+    color: #F8F8F2;
+}
+
+.tabBar .codeTab {
+    height: 30px;
+    line-height: 30px;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
