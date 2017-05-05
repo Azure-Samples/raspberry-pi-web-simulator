@@ -30,16 +30,23 @@ class MQTT {
 
   onMessageArrived() { }
 
-  publish(topic, message, cb) {
+  publish(topic, message, properties, cb) {
     if (!this.connected) {
       cb('Not connected');
       return;
     }
+    var queries = [];
+    for(var i = 0; i < properties.propertyList.length; i++) {
+      queries.push(properties.propertyList[i].key + '=' + properties.propertyList[i].value);
+    }
+
+    console.log(JSON.stringify(queries));
     var mqttMsg = new Paho.MQTT.Message(message);
-    mqttMsg.destinationName = topic;
-    mqttMsg.qos = 0;
+    mqttMsg.destinationName = topic + queries.join('&');
+    mqttMsg.qos = 1;
     mqttMsg.retained = false;
 
+    console.log(mqttMsg.destinationName);
     this.client.send(mqttMsg);
   }
 

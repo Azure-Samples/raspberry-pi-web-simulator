@@ -31,7 +31,7 @@ class IoTHub {
 
   sendEvent(message, cb) {
     if (!message) { cb('message is empty'); }
-    this.transport.publish(this.D2CPoint, JSON.stringify(message), cb);
+    this.transport.publish(this.D2CPoint, message.data.toString(), message.properties, cb);
   }
 }
 

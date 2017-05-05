@@ -12,7 +12,9 @@ function sendMessage(msgCb, errCb) {
     var messageFactory = new Function('messageId', codeFactory.getRunCode('getMessage') + '\nreturn getMessage(messageId)');
     var sensorMessage = messageFactory(messageId);
     var message = new IotHubMessage(sensorMessage.content);
-    message.properties.add('temperatureAlert', sensorMessage.temperatureAlert ? 'true' : 'false');
+    for (var i = 0; i < sensorMessage.properties.length; i++) {
+        message.properties.add(sensorMessage.properties[i].key, sensorMessage.properties[i].value);
+    }
     msgCb('Sending message: ' + sensorMessage.content);
     hub.sendEvent(message, function (err) {
         if (err) {
