@@ -17,7 +17,7 @@ class Index extends Component {
     this.runApp = this.runApp.bind(this);
   }
 
-  runApp(connStr) {
+  runApp() {
     var onMessage = function (message) {
       this.setState(function () {
         return {
@@ -34,19 +34,20 @@ class Index extends Component {
         };
       });
     }.bind(this);
-    sample(connStr, onMessage, onError);
+    sample(onMessage, onError);
   }
   render() {
     return (
       <div className='main'>
         <Banner />
-        <Toolbar onRunApp={this.runApp}/>
-        <Display className='display' consoleMsg={this.state.consoleMsg} consoleErr={this.state.consoleErr}/>
+        {
+          1 === 0 ? (<Toolbar onRunApp={this.runApp}/>) : ('')
+        }
+        <Display consoleMsg={this.state.consoleMsg} consoleErr={this.state.consoleErr} onStart={this.runApp}/>
       </div>
     );
   }
 }
-
 
 ReactDOM.render(
   <Index />,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
-import 'brace/theme/monokai';
+import 'brace/theme/solarized_light';
 
 import codeFactory from '../../data/codeFactory.js';
 
@@ -12,23 +12,41 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.codeChange = this.codeChange.bind(this);
+    this.resetCode = this.resetCode.bind(this);
     this.state = {
       tabs: [
         {
           name: 'index',
           extension: 'js',
-          content: codeFactory.getCode('index'),
-          readOnly: true
+          content: this.getCode('index'),
+          readOnly: false
         },
         {
           name: 'getMessage',
           extension: 'js',
-          content: codeFactory.getCode('getMessage'),
+          content: this.getCode('getMessage'),
           readOnly: false
         }
       ],
+      resetCount: this.props.resetCount,
       activeIndex: 0
     }
+  }
+
+  resetCode() {
+    var tabs = this.state.tabs;
+    var renderValue = '';
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].content = codeFactory.resetCode(tabs[i].name);
+    }
+
+    this.setState(function () {
+      return { tabs: tabs }
+    });
+  }
+
+  getCode(name) {
+    return codeFactory.getCode(name);
   }
 
   switchIndex(i) {
@@ -43,7 +61,7 @@ class Editor extends Component {
     tab.content = value;
     tabs[this.state.activeIndex] = tab;
     this.setState({ tabs: tabs });
-    codeFactory.changeCode(tab);
+    codeFactory.changeCode(tab.name, value);
   }
 
   render() {
@@ -51,16 +69,20 @@ class Editor extends Component {
     const tab = tabs[activeIndex];
     return (
       <div>
-        <div className='tabBar'>
-          {tabs.map(function (x, i) {
-            return (<span className={'codeTab ' + (i === activeIndex ? 'onActive' : '') }
-              onClick={this.switchIndex.bind(this, i) }
-              key={i}>{x.name + '.' + x.extension}</span>)
-          }.bind(this)) }
-        </div>
+        {
+          1 === 0 ? (
+            <div className='tabBar' >
+              {tabs.map(function (x, i) {
+                return (<span className={'codeTab ' + (i === activeIndex ? 'onActive' : '') }
+                  onClick={this.switchIndex.bind(this, i) }
+                  key={i}>{x.name + '.' + x.extension}</span>)
+              }.bind(this)) }
+            </div>
+          ) : ('')
+        }
         <AceEditor
           mode='javascript'
-          theme='monokai'
+          theme='solarized_light'
           name='codeEditor'
           className='codeEditor'
           width='100%'
@@ -69,7 +91,7 @@ class Editor extends Component {
           tabSize={2}
           defaultValue={tab.content}
           value={tab.content}
-          readOnly={tab.readOnly}
+          readOnly={this.props.readOnly || tab.readOnly}
           />
       </div>
     );

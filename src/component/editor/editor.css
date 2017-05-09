@@ -36,3 +36,19 @@
     text-align: center;
     vertical-align: middle;
 }
+
+.ace_gutter, .ace_scroller {
+    padding-top: 8px; 
+}
+
+.ace_gutter-active-line {
+    margin-top: 8px;
+}
+
+.ace_scrollbar {
+    display: none;
+}
+
+.ace_editor:hover .ace_scrollbar {
+    display: block;
+}
