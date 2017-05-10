@@ -16,17 +16,7 @@ import turnOff from '../../img/turnOff.png';
 class Display extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      readOnly: false
-    };
-    this.onStart = this.onStart.bind(this);
     this.onReset = this.onReset.bind(this);
-  }
-  onStart() {
-    this.setState(function () {
-      return { readOnly: true };
-    });
-    this.props.onStart();
   }
 
   onReset() {
@@ -34,15 +24,14 @@ class Display extends Component {
   }
 
   render() {
-    const { readOnly } = this.state;
     return (
       <div className='display'>
         <div className='leftPanel'>
           <img src={this.props.turnOn ? turnOn : turnOff} alt='Raspberry PI'/>
         </div>
         <div className='rightPanel'>
-          <Editor className='editor' readOnly={readOnly} ref='codeEditor'/>
-          <ControlBar onStart={this.onStart} onReset={this.onReset}/>
+          <Editor className='editor' readOnly={this.props.isRunning} ref='codeEditor'/>
+          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning}/>
           <Console message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.onStart}/>
         </div>
       </div>

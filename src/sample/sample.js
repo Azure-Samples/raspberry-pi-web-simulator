@@ -5,12 +5,13 @@ import Protocol from './mqtt.js';
 import wpi from './wiring-pi.js';
 import codeFactory from '../data/codeFactory.js';
 
-export default function run(msgCb, errCb, wpiFunc) {
-    wpi.setFunc(wpiFunc);
+export default function run(option) {
+    wpi.setFunc(option);
     try {
         var clientApp = new Function('Client', 'Message', 'Protocol', 'wpi', 'msgCb', 'errCb', codeFactory.getRunCode('index', 'msgCb', 'errCb'));
-        clientApp(Client, Message, Protocol, wpi, msgCb, errCb);
+        clientApp(Client, Message, Protocol, wpi, option.onMessage, option.onError);
     } catch (err) {
-        errCb(err.message || JSON.stringify(err));
+        option.onError(err.message || JSON.stringify(err));
+        option.onFinish();
     }
 }

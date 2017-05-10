@@ -11,44 +11,54 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      consoleMsg: '',
-      consoleErr: '',
-      turnOn: false
+      console: {
+        consoleMsg: '',
+        consoleErr: '',
+      },
+      LEDTurnOn: false,
+      isRunning: false
     }
     this.runApp = this.runApp.bind(this);
     this.turnOff = this.turnOff.bind(this);
     this.turnOn = this.turnOn.bind(this);
+    this.onError = this.onError.bind(this);
+    this.onMessage = this.onMessage.bind(this);
+    this.onFinish = this.onFinish.bind(this);
   }
 
   runApp() {
-    var onMessage = function (message) {
-      this.setState(function () {
-        return {
-          consoleMsg: message,
-          consoleErr: ''
-        };
-      });
-    }.bind(this);
-    var onError = function (error) {
-      this.setState(function () {
-        return {
-          consoleMsg: '',
-          consoleErr: error.message || JSON.stringify(error)
-        };
-      });
-    }.bind(this);
-    sample(onMessage, onError, {
+    if (this.state.isRunning) { return; }
+
+    var option = {
+      onMessage: this.onMessage,
+      onError: this.onError,
       turnOn: this.turnOn,
-      turnOff: this.turnOff
+      turnOff: this.turnOff,
+      onFinish: this.onFinish
+    }
+
+    this.setState(function () {
+      return {
+        isRunning: true,
+        console: {}
+      }
+    });
+    sample(option);
+  }
+
+  onFinish() {
+    this.setState(function () {
+      return {
+        isRunning: false
+      }
     });
   }
 
   turnOn() {
     this.setState(function () {
       return {
-        turnOn: true,
-        consoleErr: '',
-        consoleMsg: ''
+        LEDTurnOn: true,
+        console: {}
       }
     });
   }
@@ -56,21 +66,45 @@ class Index extends Component {
   turnOff() {
     this.setState(function () {
       return {
-        turnOn: false,
-        consoleErr: '',
-        consoleMsg: ''
+        LEDTurnOn: false,
+        console: {}
       }
     });
   }
 
+  onMessage(message) {
+    this.setState(function () {
+      return {
+        console: {
+          consoleMsg: message
+        }
+      };
+    });
+  }
+  onError(error) {
+    this.setState(function () {
+      return {
+        console: {
+          consoleErr: error.message || JSON.stringify(error)
+        }
+      };
+    });
+  }
+
   render() {
+    const {console, LEDTurnOn, isRunning} = this.state;
     return (
       <div className='main'>
         <Banner />
         {
           1 === 0 ? (<Toolbar onRunApp={this.runApp}/>) : ('')
         }
-        <Display consoleMsg={this.state.consoleMsg} consoleErr={this.state.consoleErr} onStart={this.runApp} turnOn={this.state.turnOn}/>
+        <Display
+          consoleMsg={console.consoleMsg}
+          consoleErr={console.consoleErr}
+          onStart={this.runApp}
+          isRunning={isRunning}
+          turnOn={LEDTurnOn}/>
       </div>
     );
   }
