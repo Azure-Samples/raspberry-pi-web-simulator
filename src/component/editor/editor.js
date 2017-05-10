@@ -28,14 +28,12 @@ class Editor extends Component {
           readOnly: false
         }
       ],
-      resetCount: this.props.resetCount,
       activeIndex: 0
     }
   }
 
   resetCode() {
     var tabs = this.state.tabs;
-    var renderValue = '';
     for (var i = 0; i < tabs.length; i++) {
       tabs[i].content = codeFactory.resetCode(tabs[i].name);
     }
