@@ -63,6 +63,7 @@ class MQTT extends EventEmitter {
     mqttMsg.retained = false;
 
     this.client.send(mqttMsg);
+    cb();
   }
 
   disconnect() {

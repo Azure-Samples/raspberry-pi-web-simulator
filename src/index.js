@@ -12,9 +12,12 @@ class Index extends Component {
     super(props);
     this.state = {
       consoleMsg: '',
-      consoleErr: ''
+      consoleErr: '',
+      turnOn: false
     }
     this.runApp = this.runApp.bind(this);
+    this.turnOff = this.turnOff.bind(this);
+    this.turnOn = this.turnOn.bind(this);
   }
 
   runApp() {
@@ -34,8 +37,32 @@ class Index extends Component {
         };
       });
     }.bind(this);
-    sample(onMessage, onError);
+    sample(onMessage, onError, {
+      turnOn: this.turnOn,
+      turnOff: this.turnOff
+    });
   }
+
+  turnOn() {
+    this.setState(function () {
+      return {
+        turnOn: true,
+        consoleErr: '',
+        consoleMsg: ''
+      }
+    });
+  }
+
+  turnOff() {
+    this.setState(function () {
+      return {
+        turnOn: false,
+        consoleErr: '',
+        consoleMsg: ''
+      }
+    });
+  }
+
   render() {
     return (
       <div className='main'>
@@ -43,7 +70,7 @@ class Index extends Component {
         {
           1 === 0 ? (<Toolbar onRunApp={this.runApp}/>) : ('')
         }
-        <Display consoleMsg={this.state.consoleMsg} consoleErr={this.state.consoleErr} onStart={this.runApp}/>
+        <Display consoleMsg={this.state.consoleMsg} consoleErr={this.state.consoleErr} onStart={this.runApp} turnOn={this.state.turnOn}/>
       </div>
     );
   }

@@ -8,6 +8,11 @@ import 'brace/theme/monokai';
 import './display.css';
 import '../../common.css'
 
+import turnOn from '../../img/turnOn.png';
+import turnOff from '../../img/turnOff.png';
+// const turnOn = 'http://img.wxcha.com/file/201703/03/91b40f2cbc.jpg';
+// const turnOff = 'http://www.peaceticket.com/img/static/e5/e5e6bc409a4201c5d9c3486718cabf70.jpg'
+
 class Display extends Component {
   constructor(props) {
     super(props);
@@ -29,13 +34,14 @@ class Display extends Component {
   }
 
   render() {
+    const { readOnly } = this.state;
     return (
       <div className='display'>
         <div className='leftPanel'>
-          <img src='https://docs.microsoft.com/en-us/azure/iot-hub/media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png' alt='Raspberry PI'/>
+          <img src={this.props.turnOn ? turnOn : turnOff} alt='Raspberry PI'/>
         </div>
         <div className='rightPanel'>
-          <Editor className='editor' readOnly={this.state.readOnly} ref='codeEditor'/>
+          <Editor className='editor' readOnly={readOnly} ref='codeEditor'/>
           <ControlBar onStart={this.onStart} onReset={this.onReset}/>
           <Console message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.onStart}/>
         </div>

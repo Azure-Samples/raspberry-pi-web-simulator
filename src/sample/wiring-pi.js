@@ -4,10 +4,19 @@
 
 const FIXED_PIN = 4;
 var _pin;
+var turnOn, turnOff;
 
-wpi.digitalWrite = function (pin, number) {
+wpi.digitalWrite = function (pin, digital) {
   if (pin !== _pin || pin !== FIXED_PIN) {
     return;
+  }
+
+  if (digital === 1 && turnOn) {
+    turnOn();
+  }
+
+  if (digital === 0 && turnOff) {
+    turnOff();
   }
 }
 
@@ -22,6 +31,11 @@ wpi.pinMode = function(pin, mode) {
   if (mode !== wpi.OUTPUT) {
     throw new Error(mode + ' is not supported now');
   }
+}
+
+wpi.setFunc = function(option) {
+  turnOn = option.turnOn;
+  turnOff = option.turnOff;
 }
 
 wpi.OUTPUT = 'output';
