@@ -1,11 +1,20 @@
-.leftPanel{
+@media (min-width: 480px) {
+  .leftPanel{
     float: left;
     max-width: 48%;
     min-width: 48%;
     margin: 0 24px;
-}
+  }
 
-.rightPanel{
+  .rightPanel{
     overflow: hidden;
     margin: 0 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leftPanel, .rightPanel{
+    width: 98%;
+    margin: 0 auto;
+  }
 }

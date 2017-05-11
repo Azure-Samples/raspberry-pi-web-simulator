@@ -52,3 +52,16 @@
 .ace_editor:hover .ace_scrollbar {
     display: block;
 }
+
+.codeEditorTitle {
+    color: #8b8b8b;
+    font-weight: bold;
+    margin: 4px auto;
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .codeEditorTitle{
+        display: block;
+    }
+}

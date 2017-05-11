@@ -67,6 +67,7 @@ class Editor extends Component {
     const tab = tabs[activeIndex];
     return (
       <div>
+      <div className='codeEditorTitle'>Code Editor</div>
         {
           1 === 0 ? (
             <div className='tabBar' >
