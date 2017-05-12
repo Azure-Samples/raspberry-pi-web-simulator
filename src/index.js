@@ -73,6 +73,7 @@ class Index extends Component {
   }
 
   onMessage(message) {
+    console.log(message);
     this.setState(function () {
       return {
         console: {
@@ -82,6 +83,7 @@ class Index extends Component {
     });
   }
   onError(error) {
+    console.error(error);
     this.setState(function () {
       return {
         console: {

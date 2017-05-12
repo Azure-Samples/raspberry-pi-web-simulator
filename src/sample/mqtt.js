@@ -1,5 +1,10 @@
 import Paho from "paho-mqtt";
+import { results } from 'azure-iot-common';
 import { EventEmitter } from 'events';
+import MqttReceiver from './mqtt-receiver.js';
+import util from 'util';
+
+var TOPIC_RESPONSE_PUBLISH_FORMAT = "$iothub/%s/res/%d/?$rid=%s";
 
 class MQTT extends EventEmitter {
   constructor(config) {
@@ -7,7 +12,6 @@ class MQTT extends EventEmitter {
     this.config = config;
     this.client = new Paho.MQTT.Client('wss://' + config.host + ':443/$iothub/websocket?iothub-no-client-cert=true', config.deviceId);
     this.client.onConnectionLost = this.onConnectionLost;
-    this.client.onMessageArrived = this.onMessageArrived;
     this.D2CPoint = 'devices/' + config.deviceId + '/messages/events/';
     this.C2DPoint = 'devices/' + config.deviceId + '/messages/devicebound/#'
   }
@@ -17,10 +21,12 @@ class MQTT extends EventEmitter {
    * ref: https://github.com/Azure/azure-iot-sdk-node/blob/be0ad986b2d8e85d135425b113acb6c1e9815cda/device/transport/mqtt/src/mqtt.ts
    */
   connect(cb) {
-    var onConnect = function() {
+    var onConnect = function () {
       this.connected = true;
+      this.client.subscribe(this.C2DPoint, {qos: 1});
       cb();
     }.bind(this);
+
     if (this.connected) {
       cb();
       return;
@@ -57,12 +63,7 @@ class MQTT extends EventEmitter {
       queries.push(message.properties.propertyList[i].key + '=' + message.properties.propertyList[i].value);
     }
 
-    var mqttMsg = new Paho.MQTT.Message(message.data.toString());
-    mqttMsg.destinationName = this.D2CPoint + queries.join('&');
-    mqttMsg.qos = 1;
-    mqttMsg.retained = false;
-
-    this.client.send(mqttMsg);
+    this.publish(message.data.toString(), this.D2CPoint + queries.join('&'));
     cb();
   }
 
@@ -74,9 +75,17 @@ class MQTT extends EventEmitter {
     this.connected = false;
   }
 
-  getReceiver(cb) {}
+  getReceiver(cb) {
+    if (!this._receiver) {
+      this._receiver = new MqttReceiver(this.client, this.C2DPoint);
+    }
 
-  complete(message, cb) {}
+    cb(null, this._receiver);
+  }
+
+  complete(message, cb) {
+    cb(null, new results.MessageCompleted());
+  }
 
   reject() {
     throw new Error('the MQTT transport does not support rejecting messages.');
@@ -86,17 +95,71 @@ class MQTT extends EventEmitter {
     throw new Error('The MQTT transport does not support abandoning messages.');
   }
 
-  updateSharedAccessSignature(sharedAccessSignature, cb) {}
+  updateSharedAccessSignature(sharedAccessSignature, cb) {
+    this.disconnect();
+    this.config.sharedAccessSignature = sharedAccessSignature;
+    cb(null, new results.SharedAccessSignatureUpdated(true));
+  }
 
-  setOptions() {}
+  setOptions(options, done) {
+    if (!options) {
+      throw new Error('The options parameter can not be \'' + options + '\'');
+    }
 
-  sendTwinRequest(method, resource, properties, body, cb) {}
+    if (this.config.sharedAccessSignature && options.cert) {
+      throw new Error('Cannot set x509 options on a device that uses symmetric key authentication.');
+    }
 
-  validateResponse(response) {}
+    this.config.x509 = {
+      cert: options.cert,
+      key: options.key,
+      passphrase: options.passphrase
+    };
 
-  sendMethodResponse(response, cb) {}
+    if (done) {
+      done(null);
+    }
+  }
 
-  getTwinReceiver(cb) {}
+  sendTwinRequest(method, resource, properties, body, cb) {
+    throw new Error('not supported sendTwinRequest');
+  }
+
+  validateResponse(response) {
+    if (!response) {
+      throw new Error('Parameter \'response\' is falsy');
+    }
+    if (!(response.requestId)) {
+      throw new Error('Parameter \'response.requestId\' is falsy');
+    }
+    if (typeof (response.requestId) === 'string' && response.requestId.length === 0) {
+      throw new Error('Parameter \'response.requestId\' is an empty string');
+    }
+    if (typeof (response.requestId) !== 'string') {
+      throw new Error('Parameter \'response.requestId\' is not a string.');
+    }
+    if (!(response.status)) {
+      throw new Error('Parameter \'response.status\' is falsy');
+    }
+    if (typeof (response.status) !== 'number') {
+      throw new Error('Parameter \'response.status\' is not a number');
+    }
+  }
+
+  sendMethodResponse(response, cb) {
+    this.validateResponse(response);
+    var topicName = util.format(
+      TOPIC_RESPONSE_PUBLISH_FORMAT,
+      'methods',
+      response.status,
+      response.requestId
+    );
+    this.publish(JSON.stringify(response.payload), topicName);
+  }
+
+  getTwinReceiver(cb) {
+    throw new Error('not supported getTwinReceiver');
+  }
 
   /**
    * Private method
@@ -105,21 +168,13 @@ class MQTT extends EventEmitter {
     return;
   }
 
-  subscribe(point, cb) {
-    console.log(point);
-    this.client.subscribe('/' + point, {
-      qos: 0
-    });
-    this.onMessageArrivedCallback = cb;
-  }
+  publish(message, destination) {
+    var mqttMsg = new Paho.MQTT.Message(message);
+    mqttMsg.destinationName = destination;
+    mqttMsg.qos = 1;
+    mqttMsg.retained = false;
 
-  onMessageArrived(message) {
-    console.log(JSON.stringify(message));
-    if (!this.onMessageArrivedCallback) {
-      console.error('no callback specific');
-      return;
-    }
-    this.onMessageArrivedCallback(message.payloadString);
+    this.client.send(mqttMsg);
   }
 }
 
