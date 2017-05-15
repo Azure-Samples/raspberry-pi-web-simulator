@@ -72,9 +72,11 @@ class Editor extends Component {
           1 === 0 ? (
             <div className='tabBar' >
               {tabs.map(function (x, i) {
-                return (<span className={'codeTab ' + (i === activeIndex ? 'onActive' : '') }
-                  onClick={this.switchIndex.bind(this, i) }
-                  key={i}>{x.name + '.' + x.extension}</span>)
+                return (
+                  <span className={'codeTab ' + (i === activeIndex ? 'onActive' : '') }
+                    onClick={this.switchIndex.bind(this, i) }
+                    key={i}>{x.name + '.' + x.extension}
+                  </span>)
               }.bind(this)) }
             </div>
           ) : ('')

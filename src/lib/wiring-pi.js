@@ -4,19 +4,19 @@
 
 const FIXED_PIN = 4;
 var _pin;
-var turnOn, turnOff;
+var ledSwitch;
 
 wpi.digitalWrite = function (pin, digital) {
-  if (pin !== _pin || pin !== FIXED_PIN) {
+  if (pin !== _pin || pin !== FIXED_PIN || !ledSwitch) {
     return;
   }
 
-  if (digital === 1 && turnOn) {
-    turnOn();
+  if (digital === 1) {
+    ledSwitch(true);
   }
 
-  if (digital === 0 && turnOff) {
-    turnOff();
+  if (digital === 0) {
+    ledSwitch(false);
   }
 }
 
@@ -33,9 +33,8 @@ wpi.pinMode = function (pin, mode) {
   }
 }
 
-wpi.setFunc = function (option) {
-  turnOn = option.turnOn;
-  turnOff = option.turnOff;
+wpi.setFunc = function(ledSwitchCb) {
+  ledSwitch = ledSwitchCb;
 }
 
 wpi.OUTPUT = 'output';

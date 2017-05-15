@@ -5,7 +5,7 @@ import Toolbar from './component/toolbar/toolbar';
 import Display from './component/display/display';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import sample from './sample/sample.js'
+import sample from './lib/sample.js'
 
 class Index extends Component {
   constructor(props) {
@@ -19,8 +19,7 @@ class Index extends Component {
       isRunning: false
     }
     this.runApp = this.runApp.bind(this);
-    this.turnOff = this.turnOff.bind(this);
-    this.turnOn = this.turnOn.bind(this);
+    this.ledSwitch = this.ledSwitch.bind(this);
     this.onError = this.onError.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onFinish = this.onFinish.bind(this);
@@ -32,7 +31,7 @@ class Index extends Component {
     var option = {
       onMessage: this.onMessage,
       onError: this.onError,
-      turnOn: this.turnOn,
+      ledSwitch: this.ledSwitch,
       turnOff: this.turnOff,
       onFinish: this.onFinish
     }
@@ -54,21 +53,12 @@ class Index extends Component {
     });
   }
 
-  turnOn() {
+  ledSwitch(isTurnOn) {
     this.setState(function () {
       return {
-        LEDTurnOn: true,
+        LEDTurnOn: isTurnOn,
         console: {}
-      }
-    });
-  }
-
-  turnOff() {
-    this.setState(function () {
-      return {
-        LEDTurnOn: false,
-        console: {}
-      }
+      };
     });
   }
 

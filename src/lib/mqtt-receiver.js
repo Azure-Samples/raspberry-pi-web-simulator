@@ -70,7 +70,7 @@ class MqttReceiver extends EventEmitter {
 
     if (this._topics.message.topicMatchRegex.test(topic)) {
       this._topics.message.handler(topic, payload);
-    } else if (this._topics.method.topicMatchRegex.test(topic)) {
+    } else if(this._topics.method.topicMatchRegex.test(topic)) {
       this._topics.method.handler(topic, payload);
     }
   }
