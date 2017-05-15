@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "applicationinsights-js": "^1.0.9",
     "azure-iot-common": "^1.1.6",
     "azure-iot-device": "^1.1.10",
     "bootstrap": "^3.3.7",
