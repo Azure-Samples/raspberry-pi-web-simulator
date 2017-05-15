@@ -31,8 +31,8 @@ codeFactory.getRunCode = function (name, replaces, prefix) {
 }
 
 codeFactory.changeCode = function (name, value) {
-  code[name] = value;  
-  localStorage.setItem(localStoragePrefix + name, value);  
+  code[name] = value;
+  localStorage.setItem(localStoragePrefix + name, value);
 }
 
-export default function codeFactory() {};
+export default function codeFactory() { };

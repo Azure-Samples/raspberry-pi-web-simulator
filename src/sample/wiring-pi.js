@@ -26,18 +26,18 @@ wpi.setup = function (name) {
   }
 }
 
-wpi.pinMode = function(pin, mode) {
+wpi.pinMode = function (pin, mode) {
   _pin = pin;
   if (mode !== wpi.OUTPUT) {
     throw new Error(mode + ' is not supported now');
   }
 }
 
-wpi.setFunc = function(option) {
+wpi.setFunc = function (option) {
   turnOn = option.turnOn;
   turnOff = option.turnOff;
 }
 
 wpi.OUTPUT = 'output';
 
-export default function wpi() {};
+export default function wpi() { };
