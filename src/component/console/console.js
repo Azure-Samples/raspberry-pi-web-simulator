@@ -38,12 +38,15 @@ class MyConsole extends Component {
 
   render() {
     return (
-      <Console ref={(Console) => { this.myConsole = Console; } }
-        handler={this.echo}
-        promptLabel={this.promptLabel}
-        value={this.props.error}
-        welcomeMessage={welcomeMessage}
-        />
+      <div className={this.props.consoleHide ? 'hide' : ''}>
+        <Console ref={(Console) => { this.myConsole = Console; } }
+          handler={this.echo}
+          promptLabel={this.promptLabel}
+          value={this.props.error}
+          autofocus={false}
+          welcomeMessage={welcomeMessage}
+          />
+      </div>
     );
   }
 }

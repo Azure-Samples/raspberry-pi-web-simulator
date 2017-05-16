@@ -43,3 +43,7 @@ div.react-console-nofocus span.react-console-cursor {
 div.react-console-message {
 	color: #ababab;*/
 }
+
+.hide {
+    display: none;
+}

@@ -17,3 +17,8 @@
   color: #2b2b2b;
   cursor: pointer;
 }
+
+.rightBtn {
+  float: right;
+  height: 24px;
+}

@@ -16,7 +16,20 @@ import turnOff from '../../img/turnOff.png';
 class Display extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      consoleHide : false
+    }
     this.onReset = this.onReset.bind(this);
+    this.toggleConsole = this.toggleConsole.bind(this);
+  }
+
+  toggleConsole() {
+    const consoleHide = this.state.consoleHide;
+    this.setState(function () {
+      return {
+        consoleHide: !consoleHide
+      }
+    });
   }
 
   onReset() {
@@ -24,6 +37,7 @@ class Display extends Component {
   }
 
   render() {
+    const { consoleHide } = this.state;
     return (
       <div className='display'>
         <div className='leftPanel'>
@@ -31,8 +45,8 @@ class Display extends Component {
         </div>
         <div className='rightPanel'>
           <Editor className='editor' readOnly={this.props.isRunning} ref='codeEditor'/>
-          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning}/>
-          <Console message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.onStart}/>
+          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide}/>
+          <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.onStart}/>
         </div>
       </div>
     );
