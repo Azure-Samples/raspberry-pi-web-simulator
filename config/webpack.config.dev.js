@@ -124,8 +124,13 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       },
+      {
+        test: /data\\sample\.js$/,
+        loader: 'raw'
+      },
       // Process JS with Babel.
       {
+        exclude: [/data\\sample\.js$/],
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
