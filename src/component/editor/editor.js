@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/solarized_light';
-
+import 'brace/ext/searchbox';
 import codeFactory from '../../data/codeFactory.js';
 
 import './editor.css';
