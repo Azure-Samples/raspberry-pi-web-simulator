@@ -62,7 +62,7 @@
     "dev": "node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
   },
-  "homepage": "http://rpi-simu.azurewebsites.net/",
+  "homepage": ".",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"

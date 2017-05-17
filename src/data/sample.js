@@ -42,7 +42,7 @@ function sendMessage() {
     var message = new Message(content);
     message.properties.add('temperatureAlert', temperatureAlert.toString());
     console.log('Sending message: ' + content);
-    client.sendEvent(message, (err) => {
+    client.sendEvent(message, function (err) {
       if (err) {
         console.error('Failed to send message to Azure IoT Hub');
       } else {
@@ -78,7 +78,7 @@ function onStop(request, response) {
 function receiveMessageCallback(msg) {
   blinkLED();
   var message = msg.getData().toString('utf-8');
-  client.complete(msg, () => {
+  client.complete(msg, function () {
     console.log('Receive message: ' + message);
   });
 }
@@ -106,7 +106,7 @@ sensor.init()
 // create a client
 client = Client.fromConnectionString(connectionString, Protocol);
 
-client.open((err) => {
+client.open(function (err) {
   if (err) {
     console.error('[IoT hub Client] Connect error: ' + err.message);
     return;

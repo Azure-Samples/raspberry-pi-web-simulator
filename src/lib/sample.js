@@ -47,6 +47,7 @@ export default function run(option) {
       option.onFinish();
     }
   } catch (err) {
+    console.error(err);
     option.onError(err.message || JSON.stringify(err));
     option.onFinish();
   }
