@@ -8,6 +8,10 @@ if (typeof Promise === 'undefined') {
   window.Promise = require('promise/lib/es6-extensions.js');
 }
 
+if (typeof Error.captureStackTrace === 'undefined') {
+  Error.captureStackTrace = function () { }
+}
+
 // fetch() polyfill for making API calls.
 require('whatwg-fetch');
 
