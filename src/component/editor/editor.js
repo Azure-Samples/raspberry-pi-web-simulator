@@ -28,6 +28,7 @@ class Editor extends Component {
           readOnly: false
         }
       ],
+      consoleHide: false,
       activeIndex: 0
     }
   }
@@ -62,38 +63,45 @@ class Editor extends Component {
     codeFactory.changeCode(tab.name, value);
   }
 
+  componentDidUpdate() {
+    if (this.props.consoleHide === this.state.consoleHide) { return; }
+    this.setState({ consoleHide: this.props.consoleHide });
+    this.refs.aceEditor.editor.resize();
+  }
+
   render() {
-    const {tabs, activeIndex} = this.state;
+    const { tabs, activeIndex } = this.state;
     const tab = tabs[activeIndex];
     return (
-      <div>
-        <div className='codeEditorTitle'>Code Editor</div>
+      <div className={this.props.consoleHide ? 'codeEditorLong' : 'codeEditorShort'}>
         {
           1 === 0 ? (
             <div className='tabBar' >
               {tabs.map(function (x, i) {
                 return (
-                  <span className={'codeTab ' + (i === activeIndex ? 'onActive' : '') }
-                    onClick={this.switchIndex.bind(this, i) }
+                  <span className={'codeTab ' + (i === activeIndex ? 'onActive' : '')}
+                    onClick={this.switchIndex.bind(this, i)}
                     key={i}>{x.name + '.' + x.extension}
                   </span>)
-              }.bind(this)) }
+              }.bind(this))}
             </div>
           ) : ('')
         }
         <AceEditor
+          ref='aceEditor'
           mode='javascript'
           theme='solarized_light'
           name='codeEditor'
           className='codeEditor'
           width='100%'
+          height='100%'
           showPrintMargin={false}
           onChange={this.codeChange}
           tabSize={2}
           defaultValue={tab.content}
           value={tab.content}
           readOnly={this.props.readOnly || tab.readOnly}
-          />
+        />
       </div>
     );
   }

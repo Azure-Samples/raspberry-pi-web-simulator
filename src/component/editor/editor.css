@@ -60,8 +60,26 @@
     display: none;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 769px)
+ {
+    .codeEditorLong {
+        height: 97%;
+    }
+    .codeEditorShort {
+        height: 70%;
+    }
+}
+@media (max-width: 768px)
+ {
     .codeEditorTitle{
         display: block;
+    }
+
+    .codeEditorLong {
+        height: 1024px;
+    }
+
+    .codeEditorShort {
+        height: 640px;
     }
 }

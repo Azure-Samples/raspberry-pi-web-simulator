@@ -1,4 +1,4 @@
-@media (min-width: 480px) {
+@media (min-width: 769px) {
   .leftPanel{
     float: left;
     max-width: 48%;
@@ -9,10 +9,11 @@
   .rightPanel{
     overflow: hidden;
     margin: 0 0px;
+    height: 100%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .leftPanel, .rightPanel{
     width: 98%;
     margin: 0 auto;

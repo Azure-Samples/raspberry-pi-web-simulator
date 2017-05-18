@@ -44,7 +44,8 @@ class Display extends Component {
           <img src={this.props.turnOn ? turnOn : turnOff} alt='Raspberry PI'/>
         </div>
         <div className='rightPanel'>
-          <Editor className='editor' readOnly={this.props.isRunning} ref='codeEditor'/>
+          <div className='codeEditorTitle'>Code Editor</div>
+          <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor'/>
           <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide}/>
           <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart}/>
         </div>
