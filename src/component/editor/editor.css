@@ -62,11 +62,8 @@
 
 @media (min-width: 769px)
  {
-    .codeEditorLong {
-        height: 97%;
-    }
-    .codeEditorShort {
-        height: 70%;
+    .codeEditorLong, .codeEditorShort {
+        flex: 3;
     }
 }
 @media (max-width: 768px)

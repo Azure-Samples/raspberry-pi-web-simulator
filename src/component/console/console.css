@@ -1,5 +1,6 @@
 div.react-console-container {
   min-width: 100%;
+	height: 100%;
 	/*background: #4b4b4b;
 }
 
@@ -44,6 +45,24 @@ div.react-console-message {
 	color: #ababab;*/
 }
 
-.hide {
+.hideConsole {
     display: none;
+}
+
+@media (min-width: 769px)
+{
+	.showConsole {
+		flex: 1;
+	}
+
+	.hideConsole {
+		flex: 0;
+	}
+}
+
+@media (max-width: 768px)
+{    
+	.showConsole {
+		height: 240px;
+	}
 }

@@ -38,7 +38,7 @@ class MyConsole extends Component {
 
   render() {
     return (
-      <div className={this.props.consoleHide ? 'hide' : ''}>
+      <div className={this.props.consoleHide ? 'hideConsole' : 'showConsole'}>
         <Console ref={(Console) => { this.myConsole = Console; } }
           handler={this.echo}
           promptLabel={this.promptLabel}
