@@ -1,3 +1,11 @@
+.rightPanel {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  flex-flow: column;
+}
+
 @media (min-width: 769px) {
   .leftPanel{
     float: left;
