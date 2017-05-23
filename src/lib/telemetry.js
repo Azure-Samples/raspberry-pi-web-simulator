@@ -9,6 +9,8 @@ const rawProperties = {
   url: location
 };
 
+AppInsights.trackPageView('raspberry-pi-web-simulator', rawProperties.url, rawProperties);
+
 function getUserId() {
   var id = localStorage.getItem('userId');
   if (!id) {
@@ -17,7 +19,6 @@ function getUserId() {
   }
   return id;
 }
-
 
 function traceEvent(name, property, metric) {
   property = Object.assign(property || {}, rawProperties);
