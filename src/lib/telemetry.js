@@ -7,14 +7,14 @@ const googleAnalticsKey = 'UA-98097460-3';
 
 const rawProperties = {
   userId: getUserId(),
-  url: location
+  page: location
 };
 
 AppInsights.downloadAndSetup({ instrumentationKey: intrumentKey });
 ga.initialize(googleAnalticsKey);
 
 function tracePageView () {
-  ga.set({userId: rawProperties.userId});
+  ga.set(rawProperties);
   ga.ga('send', 'pageview');
 }
 
