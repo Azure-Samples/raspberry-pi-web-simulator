@@ -1,15 +1,22 @@
 import { AppInsights } from 'applicationinsights-js';
 import uuid from 'uuid';
-const intrumentKey = '0823bae8-a3b8-4fd5-80e5-f7272a2377a9';
+import ga from 'react-ga';
 
-AppInsights.downloadAndSetup({ instrumentationKey: intrumentKey });
+const intrumentKey = '34331cb5-8b57-4d57-b523-3db743d219a7';
+const googleAnalticsKey = 'UA-98097460-3';
 
 const rawProperties = {
   userId: getUserId(),
   url: location
 };
 
-AppInsights.trackPageView('raspberry-pi-web-simulator', rawProperties.url, rawProperties);
+AppInsights.downloadAndSetup({ instrumentationKey: intrumentKey });
+ga.initialize(googleAnalticsKey);
+
+function tracePageView () {
+  ga.set({userId: rawProperties.userId});
+  ga.ga('send', 'pageview');
+}
 
 function getUserId() {
   var id = localStorage.getItem('userId');
@@ -26,4 +33,4 @@ function traceEvent(name, property, metric) {
   AppInsights.flush();
 }
 
-export { traceEvent }
+export { tracePageView, traceEvent }
