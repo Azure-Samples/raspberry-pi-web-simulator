@@ -5,11 +5,14 @@ import Toolbar from './component/toolbar/toolbar';
 import Display from './component/display/display';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import sample from './lib/sample.js'
+
+import sample from './lib/sample.js';
+import { tracePageView } from './lib/telemetry.js';
 
 class Index extends Component {
   constructor(props) {
     super(props);
+    tracePageView();
     this.state = {
       console: {
         consoleMsg: '',
@@ -82,19 +85,19 @@ class Index extends Component {
   }
 
   render() {
-    const {console, LEDTurnOn, isRunning} = this.state;
+    const { console, LEDTurnOn, isRunning } = this.state;
     return (
       <div className='main'>
         <Banner />
         {
-          1 === 0 ? (<Toolbar onRunApp={this.runApp}/>) : ('')
+          1 === 0 ? (<Toolbar onRunApp={this.runApp} />) : ('')
         }
         <Display
           consoleMsg={console.consoleMsg}
           consoleErr={console.consoleErr}
           onStart={this.runApp}
           isRunning={isRunning}
-          turnOn={LEDTurnOn}/>
+          turnOn={LEDTurnOn} />
       </div>
     );
   }
