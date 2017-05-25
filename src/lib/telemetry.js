@@ -6,6 +6,7 @@ const intrumentKey = '34331cb5-8b57-4d57-b523-3db743d219a7';
 const googleAnalticsKey = 'UA-98097460-3';
 
 const rawProperties = {
+  project: 'raspberry-pi-web-simulator',
   userId: getUserId(),
   page: location
 };
