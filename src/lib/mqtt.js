@@ -1,7 +1,7 @@
 import Paho from "paho-mqtt";
 import { results } from 'azure-iot-common';
 import { EventEmitter } from 'events';
-import * as telemetry from './telemetry.js';
+import {traceEvent, userProperties} from './telemetry.js';
 import MqttReceiver from './mqtt-receiver.js';
 import util from 'util';
 
@@ -11,7 +11,7 @@ class MQTT extends EventEmitter {
   constructor(config) {
     super();
     this.config = config;
-    telemetry.traceEvent('connecting');
+    traceEvent('connecting');
     this.client = new Paho.MQTT.Client('wss://' + config.host + ':443/$iothub/websocket?iothub-no-client-cert=true', config.deviceId);
     this.client.onConnectionLost = this.onConnectionLost;
     this.D2CPoint = 'devices/' + config.deviceId + '/messages/events/';
@@ -25,7 +25,7 @@ class MQTT extends EventEmitter {
   connect(cb) {
     var onConnect = function () {
       this.connected = true;
-      telemetry.traceEvent('success-connect');
+      traceEvent('success-connect');
       cb();
     }.bind(this);
 
@@ -182,7 +182,7 @@ class MQTT extends EventEmitter {
   }
 
   static getClientType() {
-    return encodeURIComponent(telemetry.getAppName() + '/' + telemetry.getAppVersion() + '/' + telemetry.getUserId());
+    return encodeURIComponent(userProperties.project + '/' + userProperties.version + '/' + userProperties.userId);
   }
 }
 

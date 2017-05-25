@@ -7,7 +7,7 @@ const pkg = require('../../package.json');
 const intrumentKey = '34331cb5-8b57-4d57-b523-3db743d219a7';
 const googleAnalticsKey = 'UA-98097460-3';
 
-const rawProperties = {
+const userProperties = {
   project: getAppName(),
   userId: getUserId(),
   version: getAppVersion(),
@@ -18,7 +18,7 @@ AppInsights.downloadAndSetup({ instrumentationKey: intrumentKey });
 ga.initialize(googleAnalticsKey);
 
 function tracePageView() {
-  ga.set(rawProperties);
+  ga.set(userProperties);
   ga.ga('send', 'pageview');
 }
 
@@ -40,7 +40,7 @@ function getUserId() {
 }
 
 function traceEvent(name, property, metric) {
-  property = Object.assign(property || {}, rawProperties);
+  property = Object.assign(property || {}, userProperties);
   AppInsights.trackEvent(name, property, metric);
   AppInsights.flush();
 }
@@ -48,7 +48,5 @@ function traceEvent(name, property, metric) {
 export {
   tracePageView,
   traceEvent,
-  getUserId,
-  getAppVersion,
-  getAppName
+  userProperties
 }
