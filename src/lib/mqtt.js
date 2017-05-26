@@ -1,7 +1,7 @@
 import Paho from "paho-mqtt";
 import { results } from 'azure-iot-common';
 import { EventEmitter } from 'events';
-import { traceEvent } from './telemetry.js';
+import {traceEvent, userProperties} from './telemetry.js';
 import MqttReceiver from './mqtt-receiver.js';
 import util from 'util';
 
@@ -11,6 +11,7 @@ class MQTT extends EventEmitter {
   constructor(config) {
     super();
     this.config = config;
+    traceEvent('connecting');
     this.client = new Paho.MQTT.Client('wss://' + config.host + ':443/$iothub/websocket?iothub-no-client-cert=true', config.deviceId);
     this.client.onConnectionLost = this.onConnectionLost;
     this.D2CPoint = 'devices/' + config.deviceId + '/messages/events/';
@@ -30,9 +31,6 @@ class MQTT extends EventEmitter {
 
     var onFail = function (err) {
       this.connected = false;
-      traceEvent('fail-connect', {
-        error: err
-      });
       cb(err);
     }
 
@@ -49,7 +47,7 @@ class MQTT extends EventEmitter {
       onSuccess: onConnect,
       onFailure: onFail,
       keepAliveInterval: 60,
-      userName: this.config.host + '/' + this.config.deviceId + '/api-version=2016-11-14',
+      userName: this.config.host + '/' + this.config.deviceId + '/api-version=2016-11-14&DeviceClientType=' + MQTT.getClientType(),
       password: this.config.sharedAccessSignature,
     };
 
@@ -181,6 +179,10 @@ class MQTT extends EventEmitter {
     mqttMsg.retained = false;
 
     this.client.send(mqttMsg);
+  }
+
+  static getClientType() {
+    return encodeURIComponent(userProperties.project + '/' + userProperties.version + '/' + userProperties.userId);
   }
 }
 

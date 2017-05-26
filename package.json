@@ -1,5 +1,5 @@
 {
-  "name": "rpi-emulator-client",
+  "name": "raspberry-pi-web-simulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
