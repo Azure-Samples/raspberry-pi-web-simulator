@@ -1,9 +1,11 @@
 # Raspberry Pi Web Client Simulator
 
+[![Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Microsoft/raspberry-pi-web-simulator)
+
 **[Demo page](https://azure-samples.github.io/raspberry-pi-web-simulator/build/index.html)**
 
 ## How to register an IoT hub
-Click [this page](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started#create-an-iot-hub) and follow it to create your own IoT hub
+Click [this page](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started) and follow it to create your own IoT hub
 
 ## Usage
 - Replace the connection string with your Azure IoT hub device connection string, and click `run` button or type `npm start` in the console to run a client application to
