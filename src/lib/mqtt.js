@@ -47,7 +47,7 @@ class MQTT extends EventEmitter {
       onSuccess: onConnect,
       onFailure: onFail,
       keepAliveInterval: 60,
-      userName: this.config.host + '/' + this.config.deviceId + '/api-version=2016-11-14/DeviceClientType=' + MQTT.getClientType(),
+      userName: this.config.host + '/' + this.config.deviceId + '/api-version=2016-11-14&DeviceClientType=' + MQTT.getClientType(),
       password: this.config.sharedAccessSignature,
     };
 

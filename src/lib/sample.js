@@ -1,11 +1,13 @@
-import {Client, Message} from 'azure-iot-device'
+import { Client, Message } from 'azure-iot-device'
+import  * as telemetry  from './telemetry.js';
 import Protocol from './mqtt.js';
 import wpi from './wiring-pi.js';
 import codeFactory from '../data/codeFactory.js';
 import BME280 from './bme280.js';
 
 export default function run(option) {
-  const prefix = '76f98350'; // a prefix of UUID
+  // a prefix of UUID to avoid name conflict, here just use a fix one
+  const prefix = '76f98350';
   var replaces = [
     {
       src: /require\('wiring-pi'\)/g,
@@ -32,6 +34,7 @@ export default function run(option) {
   ];
   wpi.setFunc(option.ledSwitch);
   try {
+    telemetry.traceEvent('run-sample');
     var src = codeFactory.getRunCode('index', replaces, prefix);
     var clientApp = new Function('replaces' + prefix, src);
     clientApp({
@@ -47,6 +50,7 @@ export default function run(option) {
       option.onFinish();
     }
   } catch (err) {
+    telemetry.traceException(err);
     option.onError(err.message || JSON.stringify(err));
     option.onFinish();
   }
