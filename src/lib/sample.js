@@ -1,5 +1,5 @@
 import { Client, Message } from 'azure-iot-device'
-import  * as telemetry  from './telemetry.js';
+import { traceEvent } from './telemetry.js';
 import Protocol from './mqtt.js';
 import wpi from './wiring-pi.js';
 import codeFactory from '../data/codeFactory.js';
@@ -34,7 +34,7 @@ export default function run(option) {
   ];
   wpi.setFunc(option.ledSwitch);
   try {
-    telemetry.traceEvent('run-sample');
+    traceEvent('run-sample');
     var src = codeFactory.getRunCode('index', replaces, prefix);
     var clientApp = new Function('replaces' + prefix, src);
     clientApp({
@@ -50,7 +50,7 @@ export default function run(option) {
       option.onFinish();
     }
   } catch (err) {
-    telemetry.traceException(err);
+    traceEvent('run-error', { error: err });
     option.onError(err.message || JSON.stringify(err));
     option.onFinish();
   }

@@ -45,14 +45,8 @@ function traceEvent(name, property, metric) {
   AppInsights.flush();
 }
 
-function traceException(ex) {
-  AppInsights.trackException(ex, '', userProperties);
-  AppInsights.flush();
-}
-
 export {
   tracePageView,
   traceEvent,
-  traceException,
   userProperties
 }
