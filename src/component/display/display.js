@@ -41,7 +41,8 @@ class Display extends Component {
     return (
       <div className='display'>
         <div className='leftPanel'>
-          <img src={this.props.turnOn ? turnOn : turnOff} alt='Raspberry PI'/>
+          <img style={{ display: this.props.turnOn ? 'block' : 'none'}} src={turnOn} alt='Raspberry PI'/>
+          <img style={{ display: this.props.turnOn ? 'none' : 'block'}}  src={turnOff} alt='Raspberry PI'/>
         </div>
         <div className='rightPanel'>
           <div className='codeEditorTitle'>Code Editor</div>
