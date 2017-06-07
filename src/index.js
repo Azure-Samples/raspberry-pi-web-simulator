@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Banner from './component/banner/banner';
 import Toolbar from './component/toolbar/toolbar';
 import Display from './component/display/display';
+import HelpButton from './component/helpButton/helpButton';
+import HelpOverlay from './component/helpOverlay/helpOverlay';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
@@ -19,7 +21,8 @@ class Index extends Component {
         consoleErr: '',
       },
       LEDTurnOn: false,
-      isRunning: false
+      isRunning: false,
+      showHelp: false
     }
     this.runApp = this.runApp.bind(this);
     this.ledSwitch = this.ledSwitch.bind(this);
@@ -75,6 +78,9 @@ class Index extends Component {
     });
   }
   onError(error) {
+      if(error.indexOf("The connection string is missing the property") !== -1) {
+          this.toggleHelpState();
+      }
     this.setState(function () {
       return {
         console: {
@@ -84,8 +90,16 @@ class Index extends Component {
     });
   }
 
+  toggleHelpState = () => {
+    this.setState((prev)=>{
+        return {
+            showHelp: !prev.showHelp
+        }
+    })
+  }
+
   render() {
-    const { console, LEDTurnOn, isRunning } = this.state;
+    const { console, LEDTurnOn, isRunning, showHelp } = this.state;
     return (
       <div className='main'>
         <Banner />
@@ -98,6 +112,11 @@ class Index extends Component {
           onStart={this.runApp}
           isRunning={isRunning}
           turnOn={LEDTurnOn} />
+        <HelpButton 
+          toggleHelpState = {this.toggleHelpState} />
+        <HelpOverlay
+          needShowHelp = {showHelp}
+          toggleHelpState = {this.toggleHelpState} />
       </div>
     );
   }
