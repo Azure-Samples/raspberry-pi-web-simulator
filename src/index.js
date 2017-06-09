@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Banner from './component/banner/banner';
 import Toolbar from './component/toolbar/toolbar';
 import Display from './component/display/display';
-import HelpButton from './component/helpButton/helpButton';
+
 import HelpOverlay from './component/helpOverlay/helpOverlay';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
@@ -23,6 +23,13 @@ class Index extends Component {
       LEDTurnOn: false,
       isRunning: false,
       showHelp: false
+    }
+    if (typeof(Storage) !== "undefined") {
+        var disableHelp = localStorage.getItem("disable-help");
+        if(disableHelp == null) {
+            this.state.showHelp = true;
+            localStorage.setItem("disable-help","true");
+        }
     }
     this.runApp = this.runApp.bind(this);
     this.ledSwitch = this.ledSwitch.bind(this);
@@ -100,9 +107,11 @@ class Index extends Component {
 
   render() {
     const { console, LEDTurnOn, isRunning, showHelp } = this.state;
+    
     return (
       <div className='main'>
-        <Banner />
+        <Banner 
+        toggleHelpState = {this.toggleHelpState} />
         {
           1 === 0 ? (<Toolbar onRunApp={this.runApp} />) : ('')
         }
@@ -112,8 +121,6 @@ class Index extends Component {
           onStart={this.runApp}
           isRunning={isRunning}
           turnOn={LEDTurnOn} />
-        <HelpButton 
-          toggleHelpState = {this.toggleHelpState} />
         <HelpOverlay
           needShowHelp = {showHelp}
           toggleHelpState = {this.toggleHelpState} />

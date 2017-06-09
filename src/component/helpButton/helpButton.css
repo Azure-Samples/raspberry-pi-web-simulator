@@ -1,5 +1,3 @@
 .help {
-  position: fixed;
-  bottom: 100px;
-  left: 0;
+    float:right;
 }
