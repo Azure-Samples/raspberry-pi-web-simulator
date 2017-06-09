@@ -1,35 +1,93 @@
 .overlay {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: space-around;
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
     top: 0; 
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
     z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
 }
 
+.row1 {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 50px;
+    padding-top: 20px;
+}
+
+.row2 {
+    display: flex;
+    align-items: center;
+}
+
+.row3 {
+    display: flex;
+    padding: 20px 0;
+    justify-content: center;
+}
+
 .closeButton {
-    position: fixed;    
-    right: 100px;
-    top: 50px;
+
 }
 
 .instruction {
-    display: block;
-    position: fixed;
-    padding: 100px 50px 50px 50px;
     color: white;
+    flex-grow: 10;
     font-size: 20px;
     line-height: 2em;
     text-align: center;
+    vertical-align: center;
+    width: auto;
+    height: 100%;
 }
 
 .instruction img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.help-prev, .help-next {
+    flex-grow: 1;
+    font-size: 5em;
+    color: white;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+}
+
+.help-prev:hover, .help-next:hover {
+    text-decoration: none;
+    color: grey;
+}
+
+.dot {
+    margin: 0 5px;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    background: white;
+}
+
+.dot-selected {
+    background: grey;
+}
+
+.element-hide {
+    visibility: hidden;
+}
+
+.element-none {
+    display: none;
+}
+
+.element-show {
+    display: block;
 }
