@@ -24,6 +24,65 @@
 .row2 {
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.slideLeftOut,.slideRightOut,.slideLeftIn,.slideRightIn {
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+.slideLeftOut {
+    animation-name: slideLeftOut;
+}
+
+.slideRightOut {
+    animation-name: slideRightOut;
+}
+
+.slideLeftIn {
+    animation-name: slideLeftIn;
+}
+
+.slideRightIn {
+    animation-name: slideRightIn;
+}
+
+@keyframes slideLeftOut {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -5000px;
+        position: absolute;
+    }
+}
+
+@keyframes slideRightOut {
+    0% {
+        margin-right: 0;
+    }
+    100% {
+        margin-right: -5000px;
+    }
+}
+
+@keyframes slideLeftIn {
+    0% {
+        margin-left: -5000;
+    }
+    100% {
+        margin-left: 0;
+    }
+}
+
+@keyframes slideRightIn {
+    0% {
+        margin-right: -5000px;
+    }
+    100% {
+        margin-right: 0;
+    }
 }
 
 .row3 {
