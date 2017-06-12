@@ -20,16 +20,6 @@ codeFactory.resetCode = function (name) {
   return code[name];
 }
 
-codeFactory.getRunCode = function (name, replaces, prefix) {
-  var result = code[name];
-
-  for (var i = 0; i < replaces.length; i++) {
-    var replace = replaces[i];
-    result = result.replace(replace.src, 'replaces' + prefix + '.' + replace.dest);
-  }
-  return result;
-}
-
 codeFactory.changeCode = function (name, value) {
   code[name] = value;
   localStorage.setItem(localStoragePrefix + name, value);
