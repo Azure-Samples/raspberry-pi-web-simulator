@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './helpOverlay.css';
 import closeButton from '../../img/closeButton.png';
 import connectionStringInPortal from '../../img/connectionStringInPortal.png';
+import fillInConnectionString from '../../img/fillInConnectionString.png';
+import runApp from '../../img/runApp.png';
 
 class HelpOverlay extends Component {
   constructor(props) {
@@ -45,35 +47,35 @@ class HelpOverlay extends Component {
           <div className="row2">
             <a className={`help-prev ${ this.state.page == 0 ? 'element-hide' : ''}`} onClick={this.prevPage}>&lt;</a>
             <div className="instruction-container" style={{transform:"translate("+this.state.page*-100+"%,0)"}}>
-            <div id="page0" className={`instruction element-show`}>
-                {(()=>{
-                    switch(this.props.showHintPart) {
-                        case 0: return "Move mouse to modules to see help information";
-                        case 1: return "Board Configuration part. You can add/modify/remove components here";
-                        case 2: return "Code Editor part. You can modify your code here";
-                        case 3: return "Tool bar part. You can run app or reset your code here";
-                        case 4: return "Console part. You can see output or error of the code here";
-                    }
-                })()}
-            </div>
-            <div id="page1" style={{left:"100%"}} className={`instruction element-show`}>
-                    In order to use simulator, you have to fill in IoT Hub device connection string in code editor<br/>
-                    Open IoT Hub in Azure Portal, Click Device Explorer -> Choose a device (If there isn't device, create one) -> Copy connection string<br/>
-                    Paste to code editor, replace '[Your IoT hub device connection string]'<br/>
-                    <img src={connectionStringInPortal} width="950px" alt="get connection string from azure portal" />
-            </div>
-            <div id="page2" style={{left:"200%"}} className={`instruction element-show`}>
-                    In order to use simulator, you have to fill in IoT Hub device connection string in code editor<br/>
-                    Open IoT Hub in Azure Portal, Click Device Explorer -> Choose a device (If there isn't device, create one) -> Copy connection string<br/>
-                    Paste to code editor, replace '[Your IoT hub device connection string]'<br/>
-                    <img src={connectionStringInPortal} width="950px" alt="get connection string from azure portal" />
-            </div>
-            <div id="page3" style={{left:"300%"}} className={`instruction element-show`}>
-                    In order to use simulator, you have to fill in IoT Hub device connection string in code editor<br/>
-                    Open IoT Hub in Azure Portal, Click Device Explorer -> Choose a device (If there isn't device, create one) -> Copy connection string<br/>
-                    Paste to code editor, replace '[Your IoT hub device connection string]'<br/>
-                    <img src={connectionStringInPortal} width="950px" alt="get connection string from azure portal" />
-            </div>
+                <div id="page0" style={{flexDirection:"column",left:"0%"}} className={`instruction element-show`}>
+                    <div>
+                        {(()=>{
+                            switch(this.props.showHintPart) {
+                                case 0: return "Move mouse to modules to see help information";
+                                case 1: return "Board Configuration part. You can add/modify/remove components here";
+                                case 2: return "Code Editor part. You can modify your code here";
+                                case 3: return "Tool bar part. You can run app or reset your code here";
+                                case 4: return "Console part. You can see output or error of the code here";
+                            }
+                        })()}
+                    </div>
+                </div>
+                <div id="page1" style={{flexDirection:"column",justifyContent:"space-around",left:"100%"}} className={`instruction element-show`}>
+                        <div>Find connection string first!<br/>
+                        Open IoT Hub in Azure Portal, Click Device Explorer -> Choose a device (If there isn't device, create one) -> Copy connection string<br/>
+                        </div>
+                        <img src={connectionStringInPortal} height="450px" alt="get connection string from azure portal" />
+                </div>
+                <div id="page2" style={{flexDirection:"column",justifyContent:"space-around",left:"200%"}} className={`instruction element-show`}>
+                        Then you have to fill in IoT Hub device connection string in code editor<br/>
+                        Paste to code editor, replace '[Your IoT hub device connection string]'<br/>
+                        <img src={fillInConnectionString} height="450px" alt="fill in connection string" />
+                </div>
+                <div id="page3" style={{flexDirection:"column",justifyContent:"space-around",left:"300%"}} className={`instruction element-show`}>
+                        Click "run" button on the control bar or type "npm start" in the console to run application<br/><br/>
+                        Enjoy your Azure IoT journey!
+                        <img src={runApp} height="350px" alt="run app" />
+                </div>
             </div>
             <a className={`help-next ${ this.state.page == 3 ? 'element-hide' : ''}`} onClick={this.nextPage}>&gt;</a>
           </div>
