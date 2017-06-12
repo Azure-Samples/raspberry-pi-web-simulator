@@ -28,7 +28,11 @@ class Index extends Component {
     if (typeof(Storage) !== "undefined") {
         var disableHelp = localStorage.getItem("disable-help");
         if(disableHelp == null) {
-            this.state.showHelp = true;
+            this.setState(()=>{
+              return {
+                showHelp: true
+              }
+            });
             localStorage.setItem("disable-help","true");
         }
     }
@@ -121,7 +125,7 @@ class Index extends Component {
     return (
       <div className={`main ${this.state.showHelp ? "main-preview" : ""}`}>
         <Banner 
-        toggleHelpState = {this.toggleHelpState} />
+        toggleHelpState={this.toggleHelpState} />
         {
           1 === 0 ? (<Toolbar onRunApp={this.runApp} />) : ('')
         }
@@ -131,12 +135,12 @@ class Index extends Component {
           onStart={this.runApp}
           isRunning={isRunning}
           turnOn={LEDTurnOn}
-          needShowHelp = {showHelp}
-          changeHintPart = {this.changeHintPart} />
+          needShowHelp={showHelp}
+          changeHintPart={this.changeHintPart} />
         <HelpOverlay
-          needShowHelp = {showHelp}
-          toggleHelpState = {this.toggleHelpState}
-          showHintPart =  {showHintPart}/>
+          needShowHelp={showHelp}
+          toggleHelpState={this.toggleHelpState}
+          showHintPart={showHintPart}/>
       </div>
     );
   }

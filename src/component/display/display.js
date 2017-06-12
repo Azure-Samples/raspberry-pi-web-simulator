@@ -47,9 +47,9 @@ class Display extends Component {
         </div>
         <div className='rightPanel'>
           <div className='codeEditorTitle'>Code Editor</div>
-          <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor' needShowHelp = {this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
-          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide} needShowHelp = {this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
-          <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart} needShowHelp = {this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
+          <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor' needShowHelp={this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
+          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide} needShowHelp={this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
+          <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart} needShowHelp={this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
         </div>
       </div>
     );

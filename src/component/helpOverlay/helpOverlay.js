@@ -38,14 +38,14 @@ class HelpOverlay extends Component {
   }
   render() {
     return (
-      <div className="overlay" style={{display: this.props.needShowHelp ? "flex" : "none",zIndex: this.state.page == 0 ? "-1" : "5",backgroundColor:this.state.page == 0 ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)"}}>
+      <div className="overlay" style={{display: this.props.needShowHelp ? "flex" : "none",zIndex: this.state.page === 0 ? "-1" : "5",backgroundColor:this.state.page === 0 ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)"}}>
           <div className="row1">
             <a className="closeButton" href="#" onClick={this.props.toggleHelpState}>
                 <img src={closeButton} width="40px" alt="close"/>
             </a>
           </div>
           <div className="row2">
-            <a className={`help-prev ${ this.state.page == 0 ? 'element-hide' : ''}`} onClick={this.prevPage}>&lt;</a>
+            <a className={`help-prev ${ this.state.page === 0 ? 'element-hide' : ''}`} onClick={this.prevPage}>&lt;</a>
             <div className="instruction-container" style={{transform:"translate("+this.state.page*-100+"%,0)"}}>
                 <div id="page0" style={{flexDirection:"column",left:"0%"}} className={`instruction element-show`}>
                     <div>
@@ -56,6 +56,7 @@ class HelpOverlay extends Component {
                                 case 2: return "Code Editor part. You can modify your code here";
                                 case 3: return "Tool bar part. You can run app or reset your code here";
                                 case 4: return "Console part. You can see output or error of the code here";
+                                default: return "";
                             }
                         })()}
                     </div>
@@ -77,13 +78,13 @@ class HelpOverlay extends Component {
                         <img src={runApp} height="350px" alt="run app" />
                 </div>
             </div>
-            <a className={`help-next ${ this.state.page == 3 ? 'element-hide' : ''}`} onClick={this.nextPage}>&gt;</a>
+            <a className={`help-next ${ this.state.page === 3 ? 'element-hide' : ''}`} onClick={this.nextPage}>&gt;</a>
           </div>
           <div className="row3">
-              <div className={`dot ${ this.state.page == 0 ? 'dot-selected' : ''}`} />
-              <div className={`dot ${ this.state.page == 1 ? 'dot-selected' : ''}`} />
-              <div className={`dot ${ this.state.page == 2 ? 'dot-selected' : ''}`} />
-              <div className={`dot ${ this.state.page == 3 ? 'dot-selected' : ''}`} />
+              <div className={`dot ${ this.state.page === 0 ? 'dot-selected' : ''}`} />
+              <div className={`dot ${ this.state.page === 1 ? 'dot-selected' : ''}`} />
+              <div className={`dot ${ this.state.page === 2 ? 'dot-selected' : ''}`} />
+              <div className={`dot ${ this.state.page === 3 ? 'dot-selected' : ''}`} />
           </div>
       </div>
     );

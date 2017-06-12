@@ -10,7 +10,7 @@ class Banner extends Component {
         <img src={rpiLogo} alt="Raspberry Pi logo"/>
         <span>Raspberry Pi Azure IoT Online Simulator</span>
         <HelpButton 
-          toggleHelpState = {this.props.toggleHelpState} />
+          toggleHelpState={this.props.toggleHelpState} />
       </div>
     );
   }
