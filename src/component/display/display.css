@@ -6,6 +6,27 @@ div img {
     width: 100%;
 }
 
+.leftPanel {
+    position: relative;
+}
+
 .leftPanel img{
     margin-top: 24px;
+}
+
+.leftPanel:hover .localOverlay {
+    opacity: 0 !important;;
+}
+
+.localOverlay {
+    display: block;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: all 500ms ease;
 }

@@ -7,6 +7,11 @@
   height: 24px;
   line-height: 24px;
   padding-left: 18px;
+  position: relative;
+}
+
+.controlBar:hover .localOverlay {
+    opacity: 0 !important;;
 }
 
 .controlBar span {

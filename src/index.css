@@ -2,9 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: black
 }
 
 .main {
+  background: white;
   display: flex;
   display: -webkit-flex;
   display: -ms-flex;
@@ -15,7 +17,12 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+  transition: all 500ms ease;
 }
+
+.main-preview {
+    transform: scale(0.7);
+ }
 
 .display {
   flex: 1;

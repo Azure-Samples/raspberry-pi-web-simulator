@@ -38,7 +38,8 @@ class MyConsole extends Component {
 
   render() {
     return (
-      <div className={this.props.consoleHide ? 'hideConsole' : 'showConsole'}>
+      <div className={this.props.consoleHide ? 'hideConsole' : 'showConsole'} onMouseEnter={this.props.changeHintPart.bind(this,4)}>
+        <div className='localOverlay' style={{opacity: this.props.needShowHelp ? "1" : "0",zIndex: this.props.needShowHelp ? "5" : "-1"}}/>
         <Console ref={(Console) => { this.myConsole = Console; } }
           handler={this.echo}
           promptLabel={this.promptLabel}

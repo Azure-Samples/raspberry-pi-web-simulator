@@ -40,15 +40,16 @@ class Display extends Component {
     const { consoleHide } = this.state;
     return (
       <div className='display'>
-        <div className='leftPanel'>
+        <div className='leftPanel' onMouseEnter={this.props.changeHintPart.bind(this,1)}>
+          <div className='localOverlay' style={{opacity: this.props.needShowHelp ? "1" : "0",zIndex: this.props.needShowHelp ? "5" : "-1"}}/>
           <img style={{ display: this.props.turnOn ? 'block' : 'none'}} src={turnOn} alt='Raspberry PI'/>
           <img style={{ display: this.props.turnOn ? 'none' : 'block'}}  src={turnOff} alt='Raspberry PI'/>
         </div>
         <div className='rightPanel'>
           <div className='codeEditorTitle'>Code Editor</div>
-          <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor'/>
-          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide}/>
-          <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart}/>
+          <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor' needShowHelp = {this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
+          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide} needShowHelp = {this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
+          <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart} needShowHelp = {this.props.needShowHelp} changeHintPart={this.props.changeHintPart}/>
         </div>
       </div>
     );

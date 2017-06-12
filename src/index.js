@@ -22,14 +22,15 @@ class Index extends Component {
       },
       LEDTurnOn: false,
       isRunning: false,
-      showHelp: false
+      showHelp: false,
+      showHintPart: 0
     }
     if (typeof(Storage) !== "undefined") {
         var disableHelp = localStorage.getItem("disable-help");
-        //if(disableHelp == null) {
+        if(disableHelp == null) {
             this.state.showHelp = true;
             localStorage.setItem("disable-help","true");
-        //}
+        }
     }
     this.runApp = this.runApp.bind(this);
     this.ledSwitch = this.ledSwitch.bind(this);
@@ -100,16 +101,25 @@ class Index extends Component {
   toggleHelpState = () => {
     this.setState((prev)=>{
         return {
+            showHintPart: 0,
             showHelp: !prev.showHelp
         }
     })
   }
 
+  changeHintPart = (part) => {
+      this.setState(()=>{
+          return {
+              showHintPart: part
+          }
+      })
+  }
+
   render() {
-    const { console, LEDTurnOn, isRunning, showHelp } = this.state;
+    const { console, LEDTurnOn, isRunning, showHelp, showHintPart } = this.state;
     
     return (
-      <div className='main'>
+      <div className={`main ${this.state.showHelp ? "main-preview" : ""}`}>
         <Banner 
         toggleHelpState = {this.toggleHelpState} />
         {
@@ -120,10 +130,13 @@ class Index extends Component {
           consoleErr={console.consoleErr}
           onStart={this.runApp}
           isRunning={isRunning}
-          turnOn={LEDTurnOn} />
+          turnOn={LEDTurnOn}
+          needShowHelp = {showHelp}
+          changeHintPart = {this.changeHintPart} />
         <HelpOverlay
           needShowHelp = {showHelp}
-          toggleHelpState = {this.toggleHelpState} />
+          toggleHelpState = {this.toggleHelpState}
+          showHintPart =  {showHintPart}/>
       </div>
     );
   }

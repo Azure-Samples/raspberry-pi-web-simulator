@@ -52,7 +52,12 @@ div.react-console-message {
 {
 	.showConsole {
 		flex: 1;
+        position: relative;
 	}
+
+    .showConsole:hover .localOverlay {
+        opacity: 0 !important;
+    }
 
 	.hideConsole {
 		flex: 0;

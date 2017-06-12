@@ -73,7 +73,8 @@ class Editor extends Component {
     const { tabs, activeIndex } = this.state;
     const tab = tabs[activeIndex];
     return (
-      <div className={this.props.consoleHide ? 'codeEditorLong' : 'codeEditorShort'}>
+      <div className={this.props.consoleHide ? 'codeEditorLong' : 'codeEditorShort'} onMouseEnter={this.props.changeHintPart.bind(this,2)}>
+        <div className="localOverlay" style={{opacity: this.props.needShowHelp ? "1" : "0",zIndex: this.props.needShowHelp ? "5" : "-1"}}/>
         {
           1 === 0 ? (
             <div className='tabBar' >
@@ -102,6 +103,7 @@ class Editor extends Component {
           value={tab.content}
           readOnly={this.props.readOnly || tab.readOnly}
         />
+        
       </div>
     );
   }

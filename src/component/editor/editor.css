@@ -64,6 +64,11 @@
  {
     .codeEditorLong, .codeEditorShort {
         flex: 3;
+        position: relative;
+    }
+
+    .codeEditorShort:hover .localOverlay {
+        opacity:0 !important;
     }
 }
 @media (max-width: 768px)
