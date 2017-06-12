@@ -19,70 +19,14 @@
     flex-direction: row-reverse;
     padding-right: 50px;
     padding-top: 20px;
+    z-index:2;
 }
 
 .row2 {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.slideLeftOut,.slideRightOut,.slideLeftIn,.slideRightIn {
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
-}
-
-.slideLeftOut {
-    animation-name: slideLeftOut;
-}
-
-.slideRightOut {
-    animation-name: slideRightOut;
-}
-
-.slideLeftIn {
-    animation-name: slideLeftIn;
-}
-
-.slideRightIn {
-    animation-name: slideRightIn;
-}
-
-@keyframes slideLeftOut {
-    0% {
-        margin-left: 0;
-    }
-    100% {
-        margin-left: -5000px;
-        position: absolute;
-    }
-}
-
-@keyframes slideRightOut {
-    0% {
-        margin-right: 0;
-    }
-    100% {
-        margin-right: -5000px;
-    }
-}
-
-@keyframes slideLeftIn {
-    0% {
-        margin-left: -5000;
-    }
-    100% {
-        margin-left: 0;
-    }
-}
-
-@keyframes slideRightIn {
-    0% {
-        margin-right: -5000px;
-    }
-    100% {
-        margin-right: 0;
-    }
+    justify-content: space-between;
+    z-index:2;
 }
 
 .row3 {
@@ -91,19 +35,25 @@
     justify-content: center;
 }
 
-.closeButton {
-
-}
-
-.instruction {
+.instruction-container {
     color: white;
-    flex-grow: 10;
     font-size: 20px;
     line-height: 2em;
     text-align: center;
     vertical-align: center;
-    width: auto;
-    height: 100%;
+    transform: translate(0%,0);
+    transition: all 500ms ease;
+    height: 592px;
+    width: 100%;
+    flex-grow: 10;
+    z-index:1;
+}
+
+.instruction {
+    position: absolute;
+    left: 0%;
+    top: 0;
+    width: 100%;
 }
 
 .instruction img {
@@ -120,6 +70,7 @@
     vertical-align: middle;
     text-align: center;
     text-decoration: none;
+    z-index:2;
 }
 
 .help-prev:hover, .help-next:hover {
