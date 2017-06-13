@@ -46,8 +46,8 @@ class HelpOverlay extends Component {
           </div>
           <div className="row2">
             <a className={`help-prev ${ this.state.page === 0 ? 'element-hide' : ''}`} onClick={this.prevPage}>&lt;</a>
-            <div className="instruction-container" style={{transform:"translate("+this.state.page*-100+"%,0)"}}>
-                <div id="page0" style={{flexDirection:"column",left:"0%"}} className={`instruction element-show`}>
+            <div className="instruction-container" style={{transform:"translate("+this.state.page*-100+"%,0)",height:this.state.page===0?"auto":"auto"}}>
+                <div id="page0" style={{flexDirection:"column",left:"0%",justifyContent:"flex-start"}} className={`instruction element-show`}>
                     <div>
                         {(()=>{
                             switch(this.props.showHintPart) {
@@ -65,17 +65,19 @@ class HelpOverlay extends Component {
                         <div>Find connection string first!<br/>
                         Open IoT Hub in Azure Portal, Click Device Explorer -> Choose a device (If there isn't device, create one) -> Copy connection string<br/>
                         </div>
-                        <img src={connectionStringInPortal} height="450px" alt="get connection string from azure portal" />
+                        <img src={connectionStringInPortal} width="988px" height="450px" alt="get connection string from azure portal" />
                 </div>
                 <div id="page2" style={{flexDirection:"column",justifyContent:"space-around",left:"200%"}} className={`instruction element-show`}>
-                        Then you have to fill in IoT Hub device connection string in code editor<br/>
+                        <div>Then you have to fill in IoT Hub device connection string in code editor<br/>
                         Paste to code editor, replace '[Your IoT hub device connection string]'<br/>
-                        <img src={fillInConnectionString} height="450px" alt="fill in connection string" />
+                        </div>
+                        <img src={fillInConnectionString} width="860px" height="450px" alt="fill in connection string" />
                 </div>
                 <div id="page3" style={{flexDirection:"column",justifyContent:"space-around",left:"300%"}} className={`instruction element-show`}>
-                        Click "run" button on the control bar or type "npm start" in the console to run application<br/><br/>
+                        <div>Click "run" button on the control bar or type "npm start" in the console to run application<br/><br/>
                         Enjoy your Azure IoT journey!
-                        <img src={runApp} height="350px" alt="run app" />
+                        </div>
+                        <img src={runApp} width="974px" height="350px" alt="run app" />
                 </div>
             </div>
             <a className={`help-next ${ this.state.page === 3 ? 'element-hide' : ''}`} onClick={this.nextPage}>&gt;</a>

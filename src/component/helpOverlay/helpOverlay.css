@@ -9,28 +9,31 @@
     left: 0;
     right: 0;
     bottom: 0;
-    transform: scale(1.428);
+    transform: scale(1.66);
+    -ms-transform: scale(1);
     cursor: pointer; /* Add a pointer on hover */
     transition: all 500ms ease;
 }
 
 .row1 {
+    flex-grow: 1;
     display: flex;
     flex-direction: row-reverse;
     padding-right: 50px;
-    z-index:2;
+    /*z-index:2;*/
 }
 
 .row2 {
+    flex-grow: 12;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
-    z-index:2;
+    /*z-index:2;*/
 }
 
 .row3 {
+    flex-grow: 1;
     display: flex;
-    padding: 20px 0;
     justify-content: center;
 }
 
@@ -42,7 +45,6 @@
     vertical-align: center;
     transform: translate(0%,0);
     transition: all 500ms ease;
-    height: 592px;
     width: 100%;
     flex-grow: 10;
     z-index:1;
@@ -64,6 +66,7 @@
 
 .help-prev, .help-next {
     flex-grow: 1;
+    align-self: center;
     font-size: 5em;
     color: white;
     height: 100%;
@@ -84,6 +87,7 @@
     width: 20px;
     height: 20px;
     background: white;
+    align-self: center;
 }
 
 .dot-selected {
