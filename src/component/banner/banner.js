@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import rpiLogo from '../../img/rpi-logo.png'
+import HelpButton from '../helpButton/helpButton';
 import './banner.css';
 
 class Banner extends Component {
@@ -8,6 +9,8 @@ class Banner extends Component {
       <div className="banner">
         <img src={rpiLogo} alt="Raspberry Pi logo"/>
         <span>Raspberry Pi Azure IoT Online Simulator</span>
+        <HelpButton 
+          toggleHelpState = {this.props.toggleHelpState} />
       </div>
     );
   }

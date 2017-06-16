@@ -19,17 +19,213 @@
 }
 
 .instruction {
-    display: block;
-    position: fixed;
-    padding: 100px 50px 50px 50px;
-    color: white;
-    font-size: 20px;
-    line-height: 2em;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 700px;
+    height: 486px;
+    margin: -243px 0 0 -350px;
+    top: 50%;
+    left: 50%;
+    background-color: white; 
 }
 
-.instruction img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.header-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
+
+.step {
+    flex: 1;
+    flex-basis: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    justify-content: space-around;
+}
+
+.step-circle {
+    /*flex: 2;*/
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    border-radius: 100%;
+    background: black;
+    margin: 0 10px;
+}
+
+.step-circle-chosen {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 17px;
+    border-radius: 100%;
+    background: white;
+}
+
+.step-label {
+    flex: 2;
+    color: white;
+}
+
+.close-button {
+    flex: 1;
+    font-size: 25px;
+    text-align: center;
+    color: white;
+}
+
+.close-button:hover {
+    color: grey;
+}
+
+.content {
+    flex: 5;
+    display: flex;
+    flex-direction: row;
+    padding: 0 30px;
+}
+
+.text-instruction {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-instruction-title {
+    flex: 1;
+    font-size: 17px;
+}
+
+.text-instruction-description {
+    flex: 3;
+    display: flex;
+    overflow: hidden;
+}
+
+.paragraph-container {
+    display: flex;
+    flex: 40;
+    flex-direction: column;
+}
+
+.paragraph {
+    margin-bottom: 20px;
+    transition: 0.5s all ease;
+    font-weight: 400;
+}
+
+.paragraph-selected {
+    font-weight: 500;
+}
+
+.paragraph-scrollbar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #cccdce;
+}
+
+.scrollbar-indicator {
+    flex: 1;
+    border-radius: 5px;
+    transition: 0.5s all ease;
+    background-color: #cccdce;
+}
+
+.scrollbar-indicator-selected {
+    background-color: grey;
+}
+
+.picture-instruction {
+    flex: 6;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.picture-container {
+    flex: 3;
+    width: 300px;
+    display: flex;
+    overflow: hidden;
+}
+
+.picture {
+    transition: 0.5s all ease;
+    top: 0;
+    width: 100%;
+}
+
+.picture-indicator-container {
+    display: flex;
+    flex: 1;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.picture-indicator {
+    flex: 1;
+    margin: 0 10px;
+    width: 15px;
+    height: 15px;
+    border: 4px solid white;
+    border-radius: 100%;
+    background: #cccdce;
+    transition: 0.5s all ease;
+}
+
+.picture-indicator-selected {
+    background-color: #2497f2;
+}
+
+.operation {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.operation-button-1 {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    border: 1px solid #cccdce;
+    padding: 4px 30px;
+    margin: 0 10px 0 0;
+}
+
+.operation-button-1:hover {
+    background-color: #cccdce;
+}
+
+.operation-button-2 {
+    display: inline-block;
+    padding: 4px 30px;
+    border: 1px solid rgb(0,120,215);
+    background-color: rgb(0,120,215);
+}
+
+.operation-button-2:hover {
+    background-color: #2497f2;
+}
+
+.space-1 {
+    flex: 1;
+}
+
+.space-2 {
+    flex: 2;
+}
+
+.element-none {
+    display: none;
 }

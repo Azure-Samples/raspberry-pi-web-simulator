@@ -1,5 +1,12 @@
 .help {
-  position: fixed;
-  bottom: 100px;
-  left: 0;
+  float: right;
+  line-height: 28px;
+  margin-right: 40px;
+  color: white;
+  font-size: 15px;
+}
+
+.help:hover {
+    color: grey;
+    text-decoration: none;
 }
