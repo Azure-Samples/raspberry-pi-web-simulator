@@ -3,6 +3,10 @@ environment:
   nodejs_version: "6"
   access_token:
     secure: A7AnoqgdKeaJOjv+nfFp7O4ZdtqgoQat+3C+Vny0WoP1WtcIwfy/b1yfh3p9qR9i
+branches:
+  only:
+    - source
+
 install:
 - ps: Install-Product node $env:nodejs_version
 - node --version
