@@ -1,0 +1,41 @@
+clone_depth: 5
+environment:
+  nodejs_version: "6"
+  access_token:
+    secure: A7AnoqgdKeaJOjv+nfFp7O4ZdtqgoQat+3C+Vny0WoP1WtcIwfy/b1yfh3p9qR9i
+branches:
+  only:
+    - source
+
+install:
+- ps: Install-Product node $env:nodejs_version
+- node --version
+- npm --version
+- npm install
+build_script:
+- npm start
+artifacts:
+- path: public
+on_success:
+- git config --global credential.helper store
+- ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+- git config --global user.email "%GIT_USER_EMAIL%"
+- git config --global user.name "%GIT_USER_NAME%"
+- git clone --depth 5 -q --branch=%TARGET_BRANCH_INT% %STATIC_SITE_REPO% %TEMP%\static-site
+- cd %TEMP%\static-site
+- del * /f /q
+- for /d %%p IN (*) do rmdir "%%p" /s /q
+- SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\build" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
+- git add -A
+- echo %APPVEYOR_PULL_REQUEST_NUMBER%
+- echo %APPVEYOR_REPO_BRANCH%
+- echo %APPVEYOR_REPO_TAG%
+- git diff
+- if "%APPVEYOR_REPO_BRANCH%"=="source" if not defined APPVEYOR_PULL_REQUEST_NUMBER (git diff --quiet --exit-code --cached || git commit -m "Update Static Site" && git push origin %TARGET_BRANCH_INT% && appveyor AddMessage "INT Site Updated")
+- git clone --depth 5 -q --branch=%TARGET_BRANCH_PROD% %STATIC_SITE_REPO% %TEMP%\static-site-prod 
+- cd %TEMP%\static-site-prod 
+- del * /f /q 
+- for /d %%p IN (*) do rmdir "%%p" /s /q 
+- SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\build" "%TEMP%\static-site-prod" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1)) 
+- git add -A 
+- if "%APPVEYOR_REPO_TAG%"=="true" if "%APPVEYOR_REPO_BRANCH%"=="source" if not defined APPVEYOR_PULL_REQUEST_NUMBER (git diff --quiet --exit-code --cached || git commit -m "Update Static Site" && git push origin %TARGET_BRANCH_PROD% && appveyor AddMessage "PROD Site Updated")
