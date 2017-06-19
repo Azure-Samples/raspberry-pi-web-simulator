@@ -28,6 +28,10 @@ class HelpOverlay extends Component {
                 subStep: 0
             }
         });
+        if(this.toggleInterval) {
+            clearInterval(this.toggleInterval);
+        }
+        this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
     }
     else {
         this.props.toggleHelpState();
@@ -42,6 +46,10 @@ class HelpOverlay extends Component {
                 subStep: 0
             }
         });
+        if(this.toggleInterval) {
+            clearInterval(this.toggleInterval);
+        }
+        this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
     }
   }
 
@@ -49,6 +57,17 @@ class HelpOverlay extends Component {
       this.setState(()=>{
           return {
               subStep: id
+          }
+      });
+      if(this.toggleInterval) {
+            clearInterval(this.toggleInterval);
+      }
+  }
+
+  toggleStep = () => {
+      this.setState((prev)=>{
+          return {
+              subStep: (prev.subStep + 1) % prev.numOfSubStep[this.state.step]
           }
       });
   }
