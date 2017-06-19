@@ -13,7 +13,7 @@ class HelpOverlay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 0,
       numOfSteps: 3,
       subStep: 0,
       numOfSubStep: [1,3,2]

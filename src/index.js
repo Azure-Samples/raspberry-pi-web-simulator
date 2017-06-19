@@ -25,10 +25,10 @@ class Index extends Component {
     }
     if (typeof(Storage) !== "undefined") {
         var disableHelp = localStorage.getItem("disable-help");
-        // if(disableHelp == null) {
+        if(disableHelp == null) {
             this.state.showHelp = true;
             localStorage.setItem("disable-help","true");
-        // }
+        }
     }
     this.runApp = this.runApp.bind(this);
     this.ledSwitch = this.ledSwitch.bind(this);
