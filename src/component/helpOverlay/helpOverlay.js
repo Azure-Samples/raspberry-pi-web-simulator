@@ -84,6 +84,15 @@ class HelpOverlay extends Component {
     }
   }
 
+  onClose = () => {
+      this.props.toggleHelpState();
+      this.setState(()=> {
+          return {
+              step: 0
+          }
+      });
+  }
+
   render() {
     return (
       <div className="overlay" style={{display: this.props.needShowHelp ? "block" : "none"}}>
@@ -106,7 +115,7 @@ class HelpOverlay extends Component {
                         <span className="step-label" >Step 3</span>
                     </div>
                     <div className="space-1" />
-                    <div className="close-button" onClick={this.props.toggleHelpState}>
+                    <div className="close-button" onClick={this.onClose}>
                         ×
                     </div>
                 </div>
