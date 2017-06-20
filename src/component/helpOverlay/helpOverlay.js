@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { traceEvent } from '../../lib/telemetry.js';
 import './helpOverlay.css';
 import closeButton from '../../img/closeButton.png';
 // import connectionStringInPortal from '../../img/connectionStringInPortal.png';
@@ -34,7 +35,7 @@ class HelpOverlay extends Component {
         this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
     }
     else {
-        this.props.toggleHelpState();
+        this.onClose();
     }
   }
 
@@ -86,6 +87,9 @@ class HelpOverlay extends Component {
 
   onClose = () => {
       this.props.toggleHelpState();
+      if(this.state.step == this.state.numOfSteps - 1) {
+          traceEvent('help-complete');
+      }
       this.setState(()=> {
           return {
               step: 0
