@@ -2,7 +2,7 @@
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Microsoft/raspberry-pi-web-simulator)
 
-Click to visit **[Demo page](https://azure-samples.github.io/raspberry-pi-web-simulator/build/index.html)**
+Click to visit **[Demo page](https://azure-samples.github.io/raspberry-pi-web-simulator/build/index.html)** This is the preview version and we'd like to have your feedback. You can submitt issues or chat with the product team in the gitter.
 
 ## How to register an IoT hub
 Click [this page](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started) and follow it to create your own IoT hub
