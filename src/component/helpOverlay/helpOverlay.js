@@ -23,16 +23,7 @@ class HelpOverlay extends Component {
 
   nextStep = () => {
     if(this.state.step<this.state.numOfSteps-1) {
-        this.setState((prev)=>{
-            return {
-                step: prev.step+1,
-                subStep: 0
-            }
-        });
-        if(this.toggleInterval) {
-            clearInterval(this.toggleInterval);
-        }
-        this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
+        this.gotoStep(this.state.step+1);
     }
     else {
         this.onClose();
@@ -41,9 +32,14 @@ class HelpOverlay extends Component {
 
   prevStep = () => {
     if(this.state.step>0) {
-        this.setState((prev)=>{
+        this.gotoStep(this.state.step-1);
+    }
+  }
+
+  gotoStep = (id) => {
+      this.setState(()=>{
             return {
-                step: prev.step-1,
+                step: id,
                 subStep: 0
             }
         });
@@ -51,7 +47,6 @@ class HelpOverlay extends Component {
             clearInterval(this.toggleInterval);
         }
         this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
-    }
   }
 
   goToSubStep = (id) => {
@@ -103,17 +98,17 @@ class HelpOverlay extends Component {
           <div className="instruction">
                 <div className="header-bar">
                     <div className="space-2" />
-                    <div className="step">
+                    <div className="step" onClick={this.gotoStep.bind(this,0)}>
                         <div className="step-circle" />
                         <div className={`${this.state.step === 0 ? 'step-circle-chosen':''}`} />
                         <span className="step-label" >Step 1</span>
                     </div>
-                    <div className="step">
+                    <div className="step" onClick={this.gotoStep.bind(this,1)}>
                         <div className="step-circle" />
                         <div className={`${this.state.step === 1 ? 'step-circle-chosen':''}`} />
                         <span className="step-label" >Step 2</span>
                     </div>
-                    <div className="step">
+                    <div className="step" onClick={this.gotoStep.bind(this,2)}>
                         <div className="step-circle" />
                         <div className={`${this.state.step === 2 ? 'step-circle-chosen':''}`} />
                         <span className="step-label" >Step 3</span>
