@@ -22,8 +22,8 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 700px;
-    height: 486px;
+    width: 720px;
+    height: 500px;
     margin: -243px 0 0 -350px;
     top: 50%;
     left: 50%;
@@ -70,12 +70,16 @@
 .step-label {
     flex: 2;
     color: white;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+    line-height: 20px;
 }
 
 .close-button {
     flex: 1;
     font-size: 25px;
     text-align: center;
+    align-self: center;
     color: white;
 }
 
@@ -84,25 +88,31 @@
 }
 
 .content {
-    flex: 5;
+    flex: 9;
     display: flex;
     flex-direction: row;
-    padding: 0 30px;
 }
 
 .text-instruction {
-    flex: 5;
+    flex: 6;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    padding: 80px 30px;
 }
 
 .text-instruction-title {
-    flex: 1;
-    font-size: 17px;
+    flex: 2;
+    font-family: 'Segoe UI';
+    font-weight: 300;
+    color: #333333;
+    line-height: 27px;
+    font-size: 20px;
+    margin-bottom: 20px
 }
 
 .text-instruction-description {
-    flex: 3;
+    flex: 6;
     display: flex;
     overflow: hidden;
 }
@@ -114,13 +124,17 @@
 }
 
 .paragraph {
-    margin-bottom: 20px;
+    padding-bottom: 10px;
     transition: 0.5s all ease;
     font-weight: 400;
+    font-family: 'Segoe UI';
+    color: #333333;
+    font-size: 15px;
+    line-height: 20px;
 }
 
 .paragraph-selected {
-    font-weight: 500;
+    color: #000000;
 }
 
 .paragraph-scrollbar {
@@ -149,6 +163,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 80px 30px;
 }
 
 .picture-container {
@@ -188,10 +203,13 @@
 }
 
 .operation {
-    flex: 2;
+    flex: 1;
     display: flex;
     align-items: center;
-    margin-left: 30px;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+    line-height: 20px;
+    margin-top: 30px;
 }
 
 .operation-button-1 {
@@ -210,12 +228,12 @@
 .operation-button-2 {
     display: inline-block;
     padding: 4px 30px;
-    background-color: rgb(0,120,215);
+    background-color: #0078d7;
     color: white;
 }
 
 .operation-button-2:hover {
-    background-color: #2497f2;
+    background-color: #0063b1;
 }
 
 .space-1 {

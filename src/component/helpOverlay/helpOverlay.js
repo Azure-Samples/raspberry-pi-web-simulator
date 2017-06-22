@@ -127,7 +127,6 @@ class HelpOverlay extends Component {
                         ×
                     </div>
                 </div>
-                <div className="space-2" />
                 <div className="content">
                     <div onWheel={this.changeSubStep} className="text-instruction">
                         <div className="text-instruction-title">
@@ -177,6 +176,14 @@ class HelpOverlay extends Component {
                                 <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'scrollbar-indicator-selected':''}`}/>
                             </div>
                         </div>
+                        <div className="operation">
+                            <div className={`operation-button-1 ${this.state.step === 0 ? 'element-none':''}`} onClick={this.prevStep}>
+                                Back
+                            </div>
+                            <div className="operation-button-2" onClick={this.nextStep}>
+                                {this.state.step === this.state.numOfSteps - 1 ? "Got it" : "Next"}
+                            </div>
+                        </div>
                     </div>
                     <div onWheel={this.changeSubStep} className="picture-instruction">
                         <div className={`picture-container ${this.state.step === 0 ? '':'element-none'}`} >
@@ -198,16 +205,6 @@ class HelpOverlay extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="operation">
-                    <div className={`operation-button-1 ${this.state.step === 0 ? 'element-none':''}`} onClick={this.prevStep}>
-                        Back
-                    </div>
-                    <div className="operation-button-2" onClick={this.nextStep}>
-                        {this.state.step === this.state.numOfSteps - 1 ? "Got it" : "Next"}
-                    </div>
-                </div>
-                <div className="space-1" onClick={this.testscroll} />
-                
           </div>
       </div>
     );
