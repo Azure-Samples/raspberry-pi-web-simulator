@@ -17,7 +17,7 @@ class HelpOverlay extends Component {
       step: 0,
       numOfSteps: 3,
       subStep: 0,
-      numOfSubStep: [1,3,2]
+      numOfSubStep: [3,3,2]
     }
   }
 
@@ -138,7 +138,15 @@ class HelpOverlay extends Component {
                         </div>
                         <div className={`text-instruction-description`}>
                             <div className={`paragraph-container ${this.state.step === 0 ? '':'element-none'}`}>
-                                These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events,  I was reminded of what writer and physicist Arthur C. Clarke once said, “Any sufficiently advanced technology is indistinguishable from magic.” Our work as a team, especially with Windows and Office, is the real magic behind these products
+                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
+                                    1. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                </div>
+                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
+                                    2. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                </div>
+                                <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
+                                    3. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                </div>
                             </div>
                             <div className={`paragraph-container ${this.state.step === 1 ? '':'element-none'}`}>
                                 <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
@@ -159,7 +167,7 @@ class HelpOverlay extends Component {
                                     2. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
                                 </div>
                             </div>
-                            <div className={`paragraph-scrollbar ${this.state.step !== 0 ? '':'element-none'}`} >
+                            <div className={`paragraph-scrollbar`} >
                                 <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'scrollbar-indicator-selected':''}`}/>
                                 <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 1 ? 'scrollbar-indicator-selected':''}`}/>
                                 <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'scrollbar-indicator-selected':''}`}/>
@@ -180,9 +188,9 @@ class HelpOverlay extends Component {
                             <img className="picture" style={{transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img3_2} />
                         </div>
                         <div className="picture-indicator-container" >
-                            <div className={`picture-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,0)}/>
-                            <div className={`picture-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 1 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,1)} />
-                            <div className={`picture-indicator ${this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,2)} />
+                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,0)}/>
+                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 1 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,1)} />
+                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,2)} />
                         </div>
                     </div>
                 </div>
