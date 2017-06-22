@@ -92,6 +92,15 @@ class HelpOverlay extends Component {
       });
   }
 
+  componentWillReceiveProps = (nextProps) => {
+      if(!this.props.needShowHelp && nextProps.needShowHelp) {
+          if(this.toggleInterval) {
+            clearInterval(this.toggleInterval);
+          }
+          this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
+      }
+  }
+
   render() {
     return (
       <div className="overlay" style={{display: this.props.needShowHelp ? "block" : "none"}}>
