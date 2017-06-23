@@ -18,7 +18,11 @@ class HelpOverlay extends Component {
       numOfSteps: 3,
       subStep: 0,
       numOfSubStep: [3,3,2]
-    }
+    };
+    if(this.toggleInterval) {
+            clearInterval(this.toggleInterval);
+        }
+        this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
   }
 
   nextStep = () => {
@@ -69,7 +73,11 @@ class HelpOverlay extends Component {
   }
 
   changeSubStep = (e) => {
-    if (e.nativeEvent.wheelDelta < 0) {
+    var wheelData = this.extractDelta(e.nativeEvent);
+    if(!wheelData) {
+        return;
+    }
+    if (wheelData < 0) {
         if(this.state.subStep !== this.state.numOfSubStep[this.state.step] - 1 ) {
             this.goToSubStep(this.state.subStep + 1);
         }
@@ -79,6 +87,15 @@ class HelpOverlay extends Component {
         }
     }
   }
+
+  extractDelta(e) {
+    if (e.wheelDelta) {
+        return e.wheelDelta;
+    }
+    if (e.deltaY) {
+        return e.deltaY*-1;
+    }
+}
 
   onClose = () => {
       this.props.toggleHelpState();
@@ -95,6 +112,12 @@ class HelpOverlay extends Component {
 
   componentWillReceiveProps = (nextProps) => {
       if(!this.props.needShowHelp && nextProps.needShowHelp) {
+          this.setState(()=> {
+            return {
+                step: 0,
+                subStep: 0
+            }
+        });
           if(this.toggleInterval) {
             clearInterval(this.toggleInterval);
           }
@@ -107,23 +130,23 @@ class HelpOverlay extends Component {
       <div className="overlay" style={{display: this.props.needShowHelp ? "block" : "none"}}>
           <div className="instruction">
                 <div className="header-bar">
-                    <div className="space-2" />
-                    <div className="step" onClick={this.gotoStep.bind(this,0)}>
-                        <div className="step-circle" />
-                        <div className={`${this.state.step === 0 ? 'step-circle-chosen':''}`} />
-                        <span className="step-label" >Step 1</span>
+                    <div className="step-container">
+                        <div className="step" onClick={this.gotoStep.bind(this,0)}>
+                            <div className="step-circle" />
+                            <div className={`${this.state.step === 0 ? 'step-circle-chosen':''}`} />
+                            <span className="step-label" >Step 1</span>
+                        </div>
+                        <div className="step" onClick={this.gotoStep.bind(this,1)}>
+                            <div className="step-circle" />
+                            <div className={`${this.state.step === 1 ? 'step-circle-chosen':''}`} />
+                            <span className="step-label" >Step 2</span>
+                        </div>
+                        <div className="step" onClick={this.gotoStep.bind(this,2)}>
+                            <div className="step-circle" />
+                            <div className={`${this.state.step === 2 ? 'step-circle-chosen':''}`} />
+                            <span className="step-label" >Step 3</span>
+                        </div>
                     </div>
-                    <div className="step" onClick={this.gotoStep.bind(this,1)}>
-                        <div className="step-circle" />
-                        <div className={`${this.state.step === 1 ? 'step-circle-chosen':''}`} />
-                        <span className="step-label" >Step 2</span>
-                    </div>
-                    <div className="step" onClick={this.gotoStep.bind(this,2)}>
-                        <div className="step-circle" />
-                        <div className={`${this.state.step === 2 ? 'step-circle-chosen':''}`} />
-                        <span className="step-label" >Step 3</span>
-                    </div>
-                    <div className="space-1" />
                     <div className="close-button" onClick={this.onClose}>
                         ×
                     </div>
@@ -172,9 +195,9 @@ class HelpOverlay extends Component {
                                 </div>
                             </div>
                             <div className={`paragraph-scrollbar`} >
-                                <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'scrollbar-indicator-selected':''}`}/>
-                                <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 1 ? 'scrollbar-indicator-selected':''}`}/>
-                                <div className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'scrollbar-indicator-selected':''}`}/>
+                                <div style={{height:(100/this.state.numOfSubStep[this.state.step])+"%"}} className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'scrollbar-indicator-selected':''}`}/>
+                                <div style={{height:(100/this.state.numOfSubStep[this.state.step])+"%"}} className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 1 ? 'scrollbar-indicator-selected':''}`}/>
+                                <div style={{height:(100/this.state.numOfSubStep[this.state.step])+"%"}} className={`scrollbar-indicator ${this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'scrollbar-indicator-selected':''}`}/>
                             </div>
                         </div>
                         <div className="operation">
@@ -191,13 +214,13 @@ class HelpOverlay extends Component {
                             <img className="picture" src={img1} />
                         </div>
                         <div className={`picture-container ${this.state.step === 1 ? '':'element-none'}`} >
-                            <img className="picture" style={{transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img2_1} />
-                            <img className="picture" style={{transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img2_2} />
-                            <img className="picture" style={{transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img2_3} />
+                            <img className="picture" style={{left:"0%",transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img2_1} />
+                            <img className="picture" style={{left:"100%",transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img2_2} />
+                            <img className="picture" style={{left:"200%",transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img2_3} />
                         </div>
                         <div className={`picture-container ${this.state.step === 2 ? '':'element-none'}`} >
-                            <img className="picture" style={{transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img3_1} />
-                            <img className="picture" style={{transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img3_2} />
+                            <img className="picture" style={{left:"0%",transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img3_1} />
+                            <img className="picture" style={{left:"100%",transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img3_2} />
                         </div>
                         <div className="picture-indicator-container" >
                             <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,0)}/>
