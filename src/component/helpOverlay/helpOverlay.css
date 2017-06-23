@@ -235,6 +235,23 @@
     background-color: #0063b1;
 }
 
+.link-container {
+    margin-top: 5px;
+}
+
+.link-container a {
+    float: right;
+    padding: 0 10px;
+}
+
+.link-container a:visited {
+    text-decoration: none;
+}
+
 .element-none {
     display: none;
+}
+
+.element-hide {
+    visibility: hidden;
 }

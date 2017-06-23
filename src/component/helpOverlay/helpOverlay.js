@@ -223,9 +223,13 @@ class HelpOverlay extends Component {
                             <img className="picture" style={{left:"100%",transform:"translate("+this.state.subStep*-100+"%,0)"}} src={img3_2} />
                         </div>
                         <div className="picture-indicator-container" >
-                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 0 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,0)}/>
-                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-none':''} ${this.state.subStep === 1 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,1)} />
-                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 2 ? 'element-none':''} ${this.state.subStep === 2 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,2)} />
+                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-hide':''} ${this.state.subStep === 0 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,0)}/>
+                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-hide':''} ${this.state.subStep === 1 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,1)} />
+                            <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 2 ? 'element-hide':''} ${this.state.subStep === 2 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,2)} />
+                        </div>
+                        <div className="link-container">
+                            <a target="_blank" href="https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started">See doc</a>
+                            <a target="_blank" href="https://github.com/Azure-Samples/raspberry-pi-web-simulator">View source</a>
                         </div>
                     </div>
                 </div>
