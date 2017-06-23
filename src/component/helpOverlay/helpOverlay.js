@@ -3,12 +3,12 @@ import { traceEvent } from '../../lib/telemetry.js';
 import './helpOverlay.css';
 import closeButton from '../../img/closeButton.png';
 // import connectionStringInPortal from '../../img/connectionStringInPortal.png';
-import img1 from '../../img/test-1.png';
-import img2_1 from '../../img/test-2-1.png';
-import img2_2 from '../../img/test-2-2.png';
-import img2_3 from '../../img/test-2-3.png';
-import img3_1 from '../../img/test-3-1.png';
-import img3_2 from '../../img/test-3-2.png';
+import img1 from '../../img/step1.png';
+import img2_1 from '../../img/step2_1.png';
+import img2_2 from '../../img/step2_2.png';
+import img2_3 from '../../img/step2_3.png';
+import img3_1 from '../../img/step3_1.png';
+import img3_2 from '../../img/step3_2.png';
 
 class HelpOverlay extends Component {
   constructor(props) {
@@ -17,13 +17,14 @@ class HelpOverlay extends Component {
       step: 0,
       numOfSteps: 3,
       subStep: 0,
+      timeSpan: 3000,
       numOfSubStep: [3,3,2],
-      offset: [[0,50,120],[0,90,140],[0,50]]
+      offset: [[0,50,120],[0,70,120],[0,50]]
     };
     if(this.toggleInterval) {
             clearInterval(this.toggleInterval);
         }
-        this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
+        this.toggleInterval = setInterval(()=>{this.toggleStep();},this.state.timeSpan);
   }
 
   nextStep = () => {
@@ -51,7 +52,7 @@ class HelpOverlay extends Component {
         if(this.toggleInterval) {
             clearInterval(this.toggleInterval);
         }
-        this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
+        this.toggleInterval = setInterval(()=>{this.toggleStep();},this.state.timeSpan);
   }
 
   goToSubStep = (id) => {
@@ -122,7 +123,7 @@ class HelpOverlay extends Component {
           if(this.toggleInterval) {
             clearInterval(this.toggleInterval);
           }
-          this.toggleInterval = setInterval(()=>{this.toggleStep();},5000);
+          this.toggleInterval = setInterval(()=>{this.toggleStep();},this.state.timeSpan);
       }
   }
 
@@ -178,7 +179,7 @@ class HelpOverlay extends Component {
                             </div>
                             <div className={`paragraph-container ${this.state.step === 1 ? '':'element-none'}`}>
                                 <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    1. In the Azure portal(https://portal.azure.com/), click New > Internet of Things > IoT Hub to provision a new IoT hub.
+                                    1. In the <a target="_blank" href="https://portal.azure.com/">Azure portal</a>, click New > Internet of Things > IoT Hub to provision a new IoT hub.
                                 </div>
                                 <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
                                     2. In the Device Explorer pane, click Add to add a device to your IoT hub.
@@ -209,6 +210,10 @@ class HelpOverlay extends Component {
                                 {this.state.step === this.state.numOfSteps - 1 ? "Got it" : "Next"}
                             </div>
                         </div>
+                        <div className="link-container">
+                            <a target="_blank" href="https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started">See doc</a>
+                            <a target="_blank" href="https://github.com/Azure-Samples/raspberry-pi-web-simulator">View source</a>
+                        </div>
                     </div>
                     <div onWheel={this.changeSubStep} className="picture-instruction">
                         <div className={`picture-container ${this.state.step === 0 ? '':'element-none'}`} >
@@ -228,10 +233,7 @@ class HelpOverlay extends Component {
                             <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 1 ? 'element-hide':''} ${this.state.subStep === 1 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,1)} />
                             <div className={`picture-indicator ${this.state.step === 0 || this.state.numOfSubStep[this.state.step] <= 2 ? 'element-hide':''} ${this.state.subStep === 2 ? 'picture-indicator-selected':''}`} onClick={this.goToSubStep.bind(this,2)} />
                         </div>
-                        <div className="link-container">
-                            <a target="_blank" href="https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started">See doc</a>
-                            <a target="_blank" href="https://github.com/Azure-Samples/raspberry-pi-web-simulator">View source</a>
-                        </div>
+                        
                     </div>
                 </div>
           </div>
