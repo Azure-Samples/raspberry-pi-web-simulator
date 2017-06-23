@@ -17,7 +17,8 @@ class HelpOverlay extends Component {
       step: 0,
       numOfSteps: 3,
       subStep: 0,
-      numOfSubStep: [3,3,2]
+      numOfSubStep: [3,3,2],
+      offset: [[0,50,120],[0,90,140],[0,50]]
     };
     if(this.toggleInterval) {
             clearInterval(this.toggleInterval);
@@ -156,42 +157,42 @@ class HelpOverlay extends Component {
                         <div className="text-instruction-title">
                             {(()=>{
                                 switch(this.state.step) {
-                                    case 0: return "Overview of Raspberry Pi web simulator";
-                                    case 1: return "Get your IoT Hub device connection string";
-                                    case 2: return "Run a sample applicaiton on Pi web simulator";
+                                    case 0: return "Overview of Raspberry Pi Simulator";
+                                    case 1: return "Prepare an Azure IoT hub and get the device connection string";
+                                    case 2: return "Run the sample app on Pi web simulator";
                                     default: return "";
                                 }
                             })()}
                         </div>
                         <div className={`text-instruction-description`}>
                             <div className={`paragraph-container ${this.state.step === 0 ? '':'element-none'}`}>
-                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    1. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    1. Assembly Area. You can see your device status.
                                 </div>
-                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    2. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    2. Coding Area. An online code editor for you to make an app on Raspberry Pi with Node.js
                                 </div>
-                                <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    3. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    3. Integrated console window. You can see the output of your app.
                                 </div>
                             </div>
                             <div className={`paragraph-container ${this.state.step === 1 ? '':'element-none'}`}>
-                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    1. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    1. In the Azure portal(https://portal.azure.com/), click New > Internet of Things > IoT Hub to provision a new IoT hub.
                                 </div>
-                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    2. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    2. In the Device Explorer pane, click Add to add a device to your IoT hub.
                                 </div>
-                                <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    3. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    3. Select the device you just created and copy the primary key of the connection string.
                                 </div>
                             </div>
                             <div className={`paragraph-container ${this.state.step === 2 ? '':'element-none'}`}>
-                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    1. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    1. Replace the placeholder in Line 15 with the Azure IoT hub device connection string.
                                 </div>
-                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,"+this.state.subStep*-100+"%)"}}>
-                                    2. These products are the culmination of incredible partnerships across the company. While watching the many different teams work together at the launch events
+                                <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
+                                    2. Click Run button or type "npm start" in the console window to run the application.
                                 </div>
                             </div>
                             <div className={`paragraph-scrollbar`} >

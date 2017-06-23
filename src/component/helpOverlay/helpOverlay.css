@@ -110,6 +110,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 300;
     color: #333333;
+    height: 53px;
     line-height: 27px;
     font-size: 20px;
     margin-bottom: 20px
@@ -133,7 +134,7 @@
     transition: 0.5s all ease;
     font-weight: 400;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #666666;
+    color: #bbbbbb;
     font-size: 15px;
     line-height: 20px;
 }
@@ -245,7 +246,7 @@
 }
 
 .link-container a:visited {
-    text-decoration: none;
+    text-decoration: 
 }
 
 .element-none {
