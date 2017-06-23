@@ -4,6 +4,7 @@ import Banner from './component/banner/banner';
 import Toolbar from './component/toolbar/toolbar';
 import Display from './component/display/display';
 import HelpOverlay from './component/helpOverlay/helpOverlay';
+import { traceEvent } from '../../lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
@@ -26,6 +27,7 @@ class Index extends Component {
     if (typeof(Storage) !== "undefined") {
         var disableHelp = localStorage.getItem("disable-help");
         if(disableHelp == null) {
+            traceEvent('help-open-first');
             this.state.showHelp = true;
             localStorage.setItem("disable-help","true");
         }
