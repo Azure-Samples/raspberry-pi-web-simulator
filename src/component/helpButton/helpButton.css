@@ -4,9 +4,13 @@
   margin-right: 40px;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .help:hover {
     color: grey;
-    text-decoration: none;
+}
+
+.help:visited {
+    color: white;
 }

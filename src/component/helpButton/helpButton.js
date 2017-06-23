@@ -11,9 +11,9 @@ class HelpButton extends Component {
   
   render() {
     return (
-      <a className='help' href="#" onClick={this.onClick}>
+      <span className='help' onClick={this.onClick}>
         Help
-      </a>
+      </span>
     );
   }
 }
