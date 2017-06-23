@@ -11,12 +11,6 @@
     z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
 }
 
-.closeButton {
-    position: fixed;    
-    right: 100px;
-    top: 50px;
-}
-
 .instruction {
     position: absolute;
     width: 750px;
@@ -88,6 +82,7 @@
     /*padding-top: 10px;*/
     text-align: center;
     color: white;
+    cursor: pointer;
 }
 
 .close-button:hover {
@@ -173,7 +168,6 @@
     margin-top: 10px;
     position: relative;
     overflow: hidden;
-    border: 2px solid rgba(204,205,206,0.5);
 }
 
 .picture {
