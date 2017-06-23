@@ -1,13 +1,19 @@
 {
-  "main.css": "static/css/main.906a9606.css",
-  "main.css.map": "static/css/main.906a9606.css.map",
-  "main.js": "static/js/main.704627c6.js",
-  "main.js.map": "static/js/main.704627c6.js.map",
+  "main.css": "static/css/main.a10a5337.css",
+  "main.css.map": "static/css/main.a10a5337.css.map",
+  "main.js": "static/js/main.e08d3c58.js",
+  "main.js.map": "static/js/main.e08d3c58.js.map",
   "static\\media\\glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
   "static\\media\\glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.89889688.svg",
   "static\\media\\glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
   "static\\media\\glyphicons-halflings-regular.woff": "static/media/glyphicons-halflings-regular.fa277232.woff",
   "static\\media\\glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2",
+  "static\\media\\step1.png": "static/media/step1.a9d8d146.png",
+  "static\\media\\step2_1.png": "static/media/step2_1.1073ca15.png",
+  "static\\media\\step2_2.png": "static/media/step2_2.04b738c6.png",
+  "static\\media\\step2_3.png": "static/media/step2_3.554d5d36.png",
+  "static\\media\\step3_1.png": "static/media/step3_1.fd9d8983.png",
+  "static\\media\\step3_2.png": "static/media/step3_2.3ad9b93d.png",
   "static\\media\\turnOff.png": "static/media/turnOff.687ec589.png",
   "static\\media\\turnOn.png": "static/media/turnOn.a63b7817.png"
 }
