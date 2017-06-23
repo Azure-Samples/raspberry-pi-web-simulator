@@ -168,7 +168,7 @@
 
 .picture-container {
     flex: 3;
-    width: 300px;
+    padding-top: 10px;
     display: flex;
     overflow: hidden;
 }
@@ -176,7 +176,9 @@
 .picture {
     transition: 0.5s all ease;
     top: 0;
-    width: 100%;
+    width: 300px;
+    height: 214px;
+    margin-bottom: 20px;
 }
 
 .picture-indicator-container {

@@ -87,7 +87,8 @@ class HelpOverlay extends Component {
       }
       this.setState(()=> {
           return {
-              step: 0
+              step: 0,
+              subStep: 0
           }
       });
   }
