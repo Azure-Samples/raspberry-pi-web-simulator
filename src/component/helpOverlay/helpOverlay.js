@@ -19,7 +19,7 @@ class HelpOverlay extends Component {
       subStep: 0,
       timeSpan: 3000,
       numOfSubStep: [3,3,2],
-      offset: [[0,50,120],[0,70,120],[0,50]]
+      offset: [[0,50,120],[0,70,120],[0,70]]
     };
     if(this.toggleInterval) {
             clearInterval(this.toggleInterval);
