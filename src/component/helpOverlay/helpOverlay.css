@@ -259,3 +259,7 @@
 .element-hide {
     visibility: hidden;
 }
+
+.bold {
+    font-weight: bold;
+}

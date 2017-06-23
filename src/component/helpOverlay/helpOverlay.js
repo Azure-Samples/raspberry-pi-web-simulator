@@ -168,32 +168,32 @@ class HelpOverlay extends Component {
                         <div className={`text-instruction-description`}>
                             <div className={`paragraph-container ${this.state.step === 0 ? '':'element-none'}`}>
                                 <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    1. Assembly Area. You can see your device status.
+                                    1. <span className="bold">Assembly Area</span>. You can see your device status.
                                 </div>
                                 <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    2. Coding Area. An online code editor for you to make an app on Raspberry Pi with Node.js
+                                    2. <span className="bold">Coding Area</span>. An online code editor for you to make an app on Raspberry Pi with Node.js
                                 </div>
                                 <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    3. Integrated console window. You can see the output of your app.
+                                    3. <span className="bold">Integrated console window</span>. You can see the output of your app.
                                 </div>
                             </div>
                             <div className={`paragraph-container ${this.state.step === 1 ? '':'element-none'}`}>
                                 <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    1. In the <a target="_blank" href="https://portal.azure.com/">Azure portal</a>, click New > Internet of Things > IoT Hub to provision a new IoT hub.
+                                    1. In the <a target="_blank" href="https://portal.azure.com/">Azure portal</a>, click <span className="bold">New > Internet of Things > IoT Hub</span> to provision a new IoT hub.
                                 </div>
                                 <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    2. In the Device Explorer pane, click Add to add a device to your IoT hub.
+                                    2. In the <span className="bold">Device Explorer</span> pane, click <span className="bold">Add</span> to add a device to your IoT hub.
                                 </div>
                                 <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    3. Select the device you just created and copy the primary key of the connection string.
+                                    3. Select the device you just created and copy the <span className="bold">primary key of the connection string</span>.
                                 </div>
                             </div>
                             <div className={`paragraph-container ${this.state.step === 2 ? '':'element-none'}`}>
                                 <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    1. Replace the placeholder in Line 15 with the Azure IoT hub device connection string.
+                                    1. Replace the placeholder in <span className="bold">Line 15</span> with the Azure IoT hub <span className="bold">device connection string</span>.
                                 </div>
                                 <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected':''}`} style={{transform:"translate(0,-"+this.state.offset[this.state.step][this.state.subStep]+"px"}}>
-                                    2. Click Run button or type "npm start" in the console window to run the application.
+                                    2. Click <span className="bold">Run</span> button or type "npm start" in the console window to run the application.
                                 </div>
                             </div>
                             <div className={`paragraph-scrollbar`} >
