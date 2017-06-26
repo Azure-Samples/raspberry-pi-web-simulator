@@ -9,12 +9,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 import sample from './lib/sample.js';
-import { tracePageView } from './lib/telemetry.js';
+import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
 
 class Index extends Component {
   constructor(props) {
     super(props);
     tracePageView();
+    tracePageViewAI();
     this.state = {
       console: {
         consoleMsg: '',

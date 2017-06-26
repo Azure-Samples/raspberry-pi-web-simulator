@@ -39,6 +39,12 @@ function getUserId() {
   return id;
 }
 
+function tracePageViewAI(name, property, metric) {
+  property = Object.assign(property || {referrer:document.referrer}, userProperties);
+  AppInsights.trackPageView(null,null,property);
+  AppInsights.flush();
+}
+
 function traceEvent(name, property, metric) {
   property = Object.assign(property || {}, userProperties);
   AppInsights.trackEvent(name, property, metric);
@@ -47,6 +53,7 @@ function traceEvent(name, property, metric) {
 
 export {
   tracePageView,
+  tracePageViewAI,
   traceEvent,
   userProperties
 }
