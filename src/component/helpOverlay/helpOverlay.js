@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { traceEvent } from '../../lib/telemetry.js';
-import './helpOverlay.css';
+import './helpOverlay.scss';
 import closeButton from '../../img/closeButton.png';
 // import connectionStringInPortal from '../../img/connectionStringInPortal.png';
 import img1 from '../../img/step1.png';

@@ -115,6 +115,7 @@ module.exports = {
           // https://github.com/facebookincubator/create-react-app/issues/1713
           /\.(js|jsx)(\?.*)?$/,
           /\.css$/,
+          /\.scss$/,
           /\.json$/,
           /\.svg$/
         ],
@@ -147,6 +148,10 @@ module.exports = {
       // "style" loader turns CSS into JS modules that inject <style> tags.
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass?importLoaders=1!postcss'
+      },
       {
         test: /\.css$/,
         loader: 'style!css?importLoaders=1!postcss'

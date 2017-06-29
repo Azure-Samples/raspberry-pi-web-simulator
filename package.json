@@ -7,6 +7,7 @@
     "azure-iot-common": "^1.1.6",
     "azure-iot-device": "1.1.7",
     "bootstrap": "^3.3.7",
+    "node-sass": "^4.5.3",
     "paho-mqtt": "^1.0.3",
     "react": "^15.5.4",
     "react-ace": "^4.2.1",
@@ -14,6 +15,7 @@
     "react-console-component": "^0.6.1",
     "react-dom": "^15.5.4",
     "react-ga": "^2.2.0",
+    "sass-loader": "^6.0.6",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
