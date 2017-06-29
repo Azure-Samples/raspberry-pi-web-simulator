@@ -3,7 +3,7 @@ import Console from 'react-console-component';
 import 'react-console-component/main.css';
 import './console.css';
 
-const welcomeMessage = 'Type `npm start` to run your app.\nWe don\'t support stop the app, so you may need referesh the page to kill your thread.\nWe keep your changes to the editor even you referesh the page. You can click the \'reset\' to reset the code';
+const welcomeMessage = 'Click `Run` button to run the sample code(When sample is running, code is read-only).\nClick `Stop` button to stop the sample code running.\nClick `Reset` to reset the code.We keep your changes to the editor even you refresh the page.';
 
 class MyConsole extends Component {
   constructor(props) {
