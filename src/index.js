@@ -94,9 +94,6 @@ class Index extends Component {
     });
   }
   onError(error) {
-      if(error.indexOf("The connection string is missing the property") !== -1) {
-          this.toggleHelpState();
-      }
     this.setState(function () {
       return {
         console: {
