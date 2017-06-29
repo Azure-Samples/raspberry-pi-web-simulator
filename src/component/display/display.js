@@ -47,7 +47,7 @@ class Display extends Component {
         <div className='rightPanel'>
           <div className='codeEditorTitle'>Code Editor</div>
           <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor'/>
-          <ControlBar onStart={this.props.onStart} onStop={this.props.onStop} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide}/>
+          <ControlBar onStart={this.props.onStart} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide}/>
           <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart}/>
         </div>
       </div>

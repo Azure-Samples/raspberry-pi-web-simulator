@@ -8,7 +8,7 @@ import { traceEvent } from './lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-import Sample from './lib/sample.js';
+import sample from './lib/sample.js';
 import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
 
 class Index extends Component {
@@ -57,14 +57,7 @@ class Index extends Component {
         console: {}
       }
     });
-    this.sample = new Sample();
-    this.sample.run(option);
-  }
-
-  stopApp = () => {
-    this.onMessage('Sample stopped.');
-    this.sample.stop();
-    this.onFinish();
+    sample(option);
   }
 
   onFinish() {
@@ -124,7 +117,6 @@ class Index extends Component {
           consoleMsg={console.consoleMsg}
           consoleErr={console.consoleErr}
           onStart={this.runApp}
-          onStop={this.stopApp}
           isRunning={isRunning}
           turnOn={LEDTurnOn} />
         
