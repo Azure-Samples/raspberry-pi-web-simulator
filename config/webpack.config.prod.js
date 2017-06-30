@@ -112,6 +112,7 @@ module.exports = {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
+          /\.scss$/,
           /\.css$/,
           /\.json$/,
           /\.svg$/
@@ -133,6 +134,10 @@ module.exports = {
         include: paths.appSrc,
         loader: 'babel',
 
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass?importLoaders=1!postcss'
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
