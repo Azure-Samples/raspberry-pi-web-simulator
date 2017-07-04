@@ -24,6 +24,10 @@ class MQTT extends EventEmitter {
    */
   connect(cb) {
     var onConnect = function () {
+        if(this.interruptConnect) {
+            this.disconnect();
+            return;
+        }
       this.connected = true;
       traceEvent('success-connect');
       cb();
@@ -73,10 +77,12 @@ class MQTT extends EventEmitter {
 
   disconnect() {
     if (!this.connected) {
+      this.interruptConnect = true;
       return;
     }
     this.client.disconnect();
     this.connected = false;
+    
   }
 
   getReceiver(cb) {
