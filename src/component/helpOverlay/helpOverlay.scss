@@ -85,7 +85,7 @@ $color-text-dark: #333333;
                 color: white;
                 cursor: pointer;
 
-                :hover {
+                &:hover {
                     color: grey;
                 }
             }
@@ -171,7 +171,7 @@ $color-text-dark: #333333;
                         margin: 0 10px 0 0;
                         cursor: pointer;
 
-                        :hover {
+                        &:hover {
                             background-color: #cccdce;
                         }
                     }
@@ -183,7 +183,7 @@ $color-text-dark: #333333;
                         color: white;
                         cursor: pointer;
 
-                        :hover {
+                        &:hover {
                             background-color: #0063b1;
                         }
                     }
