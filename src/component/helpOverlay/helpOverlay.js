@@ -156,7 +156,7 @@ class HelpOverlay extends Component {
             <div className="overlay" style={{ display: this.props.needShowHelp ? "flex" : "none" }}>
                 <div className="instruction">
                     <div className="header-bar">
-                        <div className="placeholder-1" />
+                        <div className="placeholder-2" />
                         <div className="step-container">
                             <div className="step" onClick={this.gotoStep.bind(this, 0)}>
                                 <div className="step-circle" />
@@ -174,6 +174,7 @@ class HelpOverlay extends Component {
                                 <span className="step-label" >Step 3</span>
                             </div>
                         </div>
+                        <div className="placeholder-1" />
                         <div className="close-button" onClick={this.onClose}>
                             ×
                     </div>

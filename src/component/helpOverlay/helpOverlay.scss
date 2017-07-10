@@ -1,6 +1,8 @@
 $font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $color-text-light: #bbbbbb;
 $color-text-dark: #333333;
+$break-small: 768px;
+// $mobile-phone: "screen and (max-width : 768px)";
 
 .overlay {
     position: fixed; /* Sit on top of the page content */
@@ -19,6 +21,10 @@ $color-text-dark: #333333;
     .instruction {
         width: 50%;
         height: 60%;
+        @media screen and (max-width : 768px) {
+            width: 90%;
+            height: 90%;
+        }
         margin: auto;
         display: flex;
         flex-direction: column;
@@ -31,8 +37,11 @@ $color-text-dark: #333333;
             display: flex;
 
             .step-container {
-                flex: 3;
+                flex: 6;
                 display: flex;
+                @media screen and (max-width : 768px) {
+                    visibility: hidden;
+                }
 
                 .step {
                     flex: 1;
@@ -76,9 +85,9 @@ $color-text-dark: #333333;
             .close-button {
                 flex: 1;
                 font-size: 25px;
-                text-align: right;
+                text-align: center;
                 align-self: center;
-                padding-right: 20px;
+                // padding-right: 20px;
                 color: white;
                 cursor: pointer;
 
@@ -91,9 +100,16 @@ $color-text-dark: #333333;
         .content {
             flex: 10;
             display: flex;
+            @media screen and (max-width : 768px) {
+                flex-direction: column;
+            }
 
             .text-instruction {
                 flex: 5;
+                @media screen and (max-width : 768px) {
+                    flex: 9;
+                    order: 2;
+                }
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
@@ -103,6 +119,9 @@ $color-text-dark: #333333;
                 .text-instruction-title {
                     flex: 2;
                     margin-top: 70px;
+                    @media screen and (max-width : 768px) {
+                        margin-top: 0;
+                    }
                     font-family: $font-stack;
                     font-weight: normal;
                     color: $color-text-dark;
@@ -209,9 +228,15 @@ $color-text-dark: #333333;
                 flex: 6;
                 align-self: center;
                 padding-right: 30px;
+                @media screen and (max-width : 768px) {
+                    padding-right: 0;
+                }
 
                 .picture-container {
                     margin-top: 10px;
+                    @media screen and (max-width : 768px) {
+                        margin-top: 0;
+                    }
                     overflow: hidden;
                     display: flex;
 
@@ -226,6 +251,9 @@ $color-text-dark: #333333;
 
                 .picture-indicator-container {
                     margin-top: 20px;
+                    @media screen and (max-width : 768px) {
+                        margin-top: 0;
+                    }
                     text-align: center;
 
                     .picture-indicator {
@@ -264,4 +292,8 @@ $color-text-dark: #333333;
 
 .placeholder-1 {
     flex: 1;
+}
+
+.placeholder-2 {
+    flex: 2;
 }
