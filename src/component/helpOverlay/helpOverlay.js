@@ -19,7 +19,7 @@ class HelpOverlay extends Component {
             subStep: 0,
             timeSpan: 3000,
             numOfSubStep: [3, 3, 2],
-            offset: [[0, 50, 120], [0, 70, 120], [0, 70]]
+            offset: []
         };
         if (this.toggleInterval) {
             clearInterval(this.toggleInterval);
@@ -127,25 +127,50 @@ class HelpOverlay extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setStepOffset(0);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.step !== this.state.step) {
+            this.setStepOffset(this.state.step);
+        }
+    }
+
+    setStepOffset = (step) => {
+        let tempSubOffsetArray = [];
+        let tempSum = 0;
+        for (let j = 0; j < this.state.numOfSubStep[step]; j++) {
+            tempSubOffsetArray.push(tempSum);
+            tempSum += this.allParagraph.children[step].children[j].offsetHeight;
+        }
+        this.setState(() => {
+            return {
+                offset: tempSubOffsetArray
+            }
+        });
+    }
+
     render() {
         return (
-            <div className="overlay" style={{ display: this.props.needShowHelp ? "block" : "none" }}>
+            <div className="overlay" style={{ display: this.props.needShowHelp ? "flex" : "none" }}>
                 <div className="instruction">
                     <div className="header-bar">
+                        <div className="placeholder-1" />
                         <div className="step-container">
                             <div className="step" onClick={this.gotoStep.bind(this, 0)}>
                                 <div className="step-circle" />
-                                <div className={`${this.state.step === 0 ? 'step-circle-chosen' : ''}`} />
+                                <div className={`step-circle-chosen ${this.state.step === 0 ? '' : 'element-hide'}`} />
                                 <span className="step-label" >Step 1</span>
                             </div>
                             <div className="step" onClick={this.gotoStep.bind(this, 1)}>
                                 <div className="step-circle" />
-                                <div className={`${this.state.step === 1 ? 'step-circle-chosen' : ''}`} />
+                                <div className={`step-circle-chosen ${this.state.step === 1 ? '' : 'element-hide'}`} />
                                 <span className="step-label" >Step 2</span>
                             </div>
                             <div className="step" onClick={this.gotoStep.bind(this, 2)}>
                                 <div className="step-circle" />
-                                <div className={`${this.state.step === 2 ? 'step-circle-chosen' : ''}`} />
+                                <div className={`step-circle-chosen ${this.state.step === 2 ? '' : 'element-hide'}`} />
                                 <span className="step-label" >Step 3</span>
                             </div>
                         </div>
@@ -165,34 +190,34 @@ class HelpOverlay extends Component {
                                     }
                                 })()}
                             </div>
-                            <div className={`text-instruction-description`}>
+                            <div className={`text-instruction-description`} ref={(p) => { this.allParagraph = p; }}>
                                 <div className={`paragraph-container ${this.state.step === 0 ? '' : 'element-none'}`}>
-                                    <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         1. <span className="bold">Assembly Area</span>. You can see your device status.
                                 </div>
-                                    <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         2. <span className="bold">Coding Area</span>. An online code editor for you to make an app on Raspberry Pi with Node.js
                                 </div>
-                                    <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         3. <span className="bold">Integrated console window</span>. You can see the output of your app.
                                 </div>
                                 </div>
                                 <div className={`paragraph-container ${this.state.step === 1 ? '' : 'element-none'}`}>
-                                    <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         1. In the <a target="_blank" href="https://portal.azure.com/">Azure portal</a>, click <span className="bold">New > Internet of Things > IoT Hub</span> to provision a new IoT hub.
                                 </div>
-                                    <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         2. In the <span className="bold">Device Explorer</span> pane, click <span className="bold">Add</span> to add a device to your IoT hub.
                                 </div>
-                                    <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         3. Select the device you just created and copy the <span className="bold">primary key of the connection string</span>.
                                 </div>
                                 </div>
                                 <div className={`paragraph-container ${this.state.step === 2 ? '' : 'element-none'}`}>
-                                    <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         1. Replace the placeholder in <span className="bold">Line 15</span> with the Azure IoT hub <span className="bold">device connection string</span>.
                                 </div>
-                                    <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.step][this.state.subStep] + "px" }}>
+                                    <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
                                         2. Click <span className="bold">Run</span> button or type "npm start" in the console window to run the application.
                                 </div>
                                 </div>

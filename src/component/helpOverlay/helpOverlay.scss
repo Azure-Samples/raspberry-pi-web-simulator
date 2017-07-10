@@ -13,40 +13,39 @@ $color-text-dark: #333333;
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
+    justify-content: space-between;
+    align-items: center;
 
     .instruction {
-        position: absolute;
-        width: 750px;
-        height: 500px;
-        margin: -250px 0 0 -360px;
-        top: 50%;
-        left: 50%;
+        width: 50%;
+        height: 60%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        
         background-color: white; 
 
         .header-bar {
-            height: 50px;
             background-color: black;
+            flex: 1;
+            display: flex;
 
             .step-container {
-                display: inline-block;
-                width: 465px;
-                height: 100%;
-                margin-left: 142px;
+                flex: 3;
+                display: flex;
 
                 .step {
-                    width: 155px;
-                    height: 100%;
-                    display: inline-block;
-                    position: relative;
+                    flex: 1;
                     cursor: pointer;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
 
                     div {
                         display: inline-block;
                     }
 
                     .step-circle {
-                        vertical-align: middle;
-                        display: inline-block;
                         width: 30px;
                         height: 30px;
                         border: 2px solid white;
@@ -58,9 +57,7 @@ $color-text-dark: #333333;
                     .step-circle-chosen {
                         width: 16px;
                         height: 16px;
-                        position: absolute;
-                        left: 17px;
-                        top: 7px;
+                        margin-left: -33px;
                         border-radius: 100%;
                         background: white;
                     }
@@ -71,17 +68,17 @@ $color-text-dark: #333333;
                         font-family: $font-stack;
                         font-size: 15px;
                         line-height: 20px;
+                        margin-left: 17px;
                     }
                 }
             }
 
             .close-button {
-                display: inline-block;
+                flex: 1;
                 font-size: 25px;
-                height: 100%;
-                margin-left: 100px;
-                /*padding-top: 10px;*/
-                text-align: center;
+                text-align: right;
+                align-self: center;
+                padding-right: 20px;
                 color: white;
                 cursor: pointer;
 
@@ -92,43 +89,46 @@ $color-text-dark: #333333;
         }
 
         .content {
-            height: 450px;
-            position: relative;
+            flex: 10;
+            display: flex;
 
             .text-instruction {
-                position: absolute;
-                width: 360px;
-                height: 100%;
-                padding: 80px 30px;
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                padding-right: 30px;
+                padding-left: 30px;
 
                 .text-instruction-title {
+                    flex: 2;
+                    margin-top: 70px;
                     font-family: $font-stack;
                     font-weight: normal;
                     color: $color-text-dark;
                     line-height: 27px;
                     font-size: 20px;
-                    margin-bottom: 20px
                 }
 
                 .text-instruction-description {
-                    width: 300px;
-                    height: 160px;
+                    flex: 3;
                     overflow: hidden;
+                    display: flex;
 
                     .paragraph-container {
-                        width: 292px;
-                        padding-right: 4px;
-                        height: 100%;
-                        display: inline-block;
+                        flex: 40;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-start;
 
                         .paragraph {
-                            padding-bottom: 10px;
                             transition: 0.5s all ease;
                             font-weight: 400;
                             font-family: $font-stack;
                             color: $color-text-light;
                             font-size: 15px;
                             line-height: 20px;
+                            padding-bottom: 10px;
                         }
 
                         .paragraph-selected {
@@ -137,8 +137,8 @@ $color-text-dark: #333333;
                     }
 
                     .paragraph-scrollbar {
-                        float: right;
-                        width: 8px;
+                        flex: 1;
+                        margin-left: 10px;
                         height: 100%;
                         border-radius: 5px;
                         background-color: #cccdce;
@@ -156,11 +156,11 @@ $color-text-dark: #333333;
                 }
 
                 .operation {
+                    flex: 1;
                     font-family: $font-stack;
                     font-size: 15px;
                     line-height: 20px;
-                    margin-top: 30px;
-                    height: 30px;
+                    margin-top: 10px;
 
                     .operation-button-1 {
                         display: inline-block;
@@ -190,7 +190,7 @@ $color-text-dark: #333333;
                 }
 
                 .link-container {
-                    margin-top: 15px;
+                    flex: 1;
 
                     a {
                         padding-right: 10px;
@@ -206,24 +206,20 @@ $color-text-dark: #333333;
             
 
             .picture-instruction {
-                position: absolute;
-                left: 360px;
-                width: 360px;
-                height: 100%;
-                padding: 80px 0;
+                flex: 6;
+                align-self: center;
+                padding-right: 30px;
 
                 .picture-container {
-                    height: 234px;
                     margin-top: 10px;
-                    position: relative;
                     overflow: hidden;
+                    display: flex;
 
                     .picture {
-                        position: absolute;
                         transition: 0.5s all ease;
-                        top: 0;
-                        width: 360px;
-                        height: 234px;
+                        width: 100%;
+                        min-width: 100%;
+                        height: 100%;
                         margin-bottom: 20px;
                     }
                 }
@@ -264,4 +260,8 @@ $color-text-dark: #333333;
 
 .bold {
     font-weight: 600;
+}
+
+.placeholder-1 {
+    flex: 1;
 }
