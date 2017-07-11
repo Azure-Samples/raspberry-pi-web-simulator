@@ -135,6 +135,9 @@ class HelpOverlay extends Component {
         if(prevState.step !== this.state.step) {
             this.setStepOffset(this.state.step);
         }
+        if(!prevProps.needShowHelp && this.props.needShowHelp) {
+            this.setStepOffset(this.state.step);
+        }
     }
 
     setStepOffset = (step) => {
