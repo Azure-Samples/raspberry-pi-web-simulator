@@ -8,7 +8,7 @@ class Banner extends Component {
     return (
       <div className="banner">
         <img src={rpiLogo} alt="Raspberry Pi logo"/>
-        <span>Raspberry Pi Azure IoT Online Simulator</span>
+        <span>{window.innerWidth<=768?"Raspberry Pi Simulator":"Raspberry Pi Azure IoT Online Simulator"}</span>
         <HelpButton 
           toggleHelpState = {this.props.toggleHelpState} />
       </div>
