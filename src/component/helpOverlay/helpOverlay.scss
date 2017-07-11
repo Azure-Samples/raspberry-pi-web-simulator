@@ -33,6 +33,9 @@ $break-small: 768px;
 
         .header-bar {
             background-color: black;
+            @media screen and (max-width : 768px) {
+                background-color: white;
+            }
             flex: 1;
             display: flex;
 
@@ -89,6 +92,9 @@ $break-small: 768px;
                 align-self: center;
                 // padding-right: 20px;
                 color: white;
+                @media screen and (max-width : 768px) {
+                    color: black;
+                }
                 cursor: pointer;
 
                 &:hover {
@@ -102,6 +108,7 @@ $break-small: 768px;
             display: flex;
             @media screen and (max-width : 768px) {
                 flex-direction: column;
+                flex: 20;
             }
 
             .text-instruction {
@@ -229,7 +236,8 @@ $break-small: 768px;
                 align-self: center;
                 padding-right: 30px;
                 @media screen and (max-width : 768px) {
-                    padding-right: 0;
+                    padding-right: 10px;
+                    padding-left: 10px;
                 }
 
                 .picture-container {
