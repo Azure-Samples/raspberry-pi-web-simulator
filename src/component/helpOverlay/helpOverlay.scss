@@ -21,6 +21,7 @@ $break-small: 768px;
     .instruction {
         width: 50%;
         height: 60%;
+        min-height: 400px;
         @media screen and (max-width : 768px) {
             width: 90%;
             height: 90%;
@@ -143,9 +144,6 @@ $break-small: 768px;
 
                     .paragraph-container {
                         flex: 40;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
 
                         .paragraph {
                             transition: 0.5s all ease;
