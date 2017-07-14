@@ -52,8 +52,8 @@ Localization.localizedStringList = {
         helpContent9: "with the Azure IoT hub",
         helpContent10: "device connection string",
         helpContent11: "button or type \"npm start\" in the console window to run the application",
-        altRaspberryPiLogo: "Raspberry Pi logo",
-
+        altRaspberryPiLogo: "Raspberry Pi logo"
     }
 };
+
 export default Localization;
