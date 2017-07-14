@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { traceEvent } from '../../lib/telemetry.js';
 import './helpButton.css';
 import helpPicture from '../../img/helpButton.png';
+import Localization from '../../localization/localization';
 
 class HelpButton extends Component {
   onClick = () => {
@@ -12,7 +13,7 @@ class HelpButton extends Component {
   render() {
     return (
       <span className='help' onClick={this.onClick}>
-        Help
+        {Localization.getLocalizedString().helpButton}
       </span>
     );
   }

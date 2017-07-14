@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { traceEvent } from '../../lib/telemetry.js';
 import './helpOverlay.scss';
 import closeButton from '../../img/closeButton.png';
+import Localization from '../../localization/localization';
 // import connectionStringInPortal from '../../img/connectionStringInPortal.png';
 import img1 from '../../img/step1.png';
 import img2_1 from '../../img/step2_1.png';
@@ -164,17 +165,17 @@ class HelpOverlay extends Component {
                             <div className="step" onClick={this.gotoStep.bind(this, 0)}>
                                 <div className="step-circle" />
                                 <div className={`step-circle-chosen ${this.state.step === 0 ? '' : 'element-hide'}`} />
-                                <span className="step-label" >Step 1</span>
+                                <span className="step-label" >{Localization.getLocalizedString().helpStep} 1</span>
                             </div>
                             <div className="step" onClick={this.gotoStep.bind(this, 1)}>
                                 <div className="step-circle" />
                                 <div className={`step-circle-chosen ${this.state.step === 1 ? '' : 'element-hide'}`} />
-                                <span className="step-label" >Step 2</span>
+                                <span className="step-label" >{Localization.getLocalizedString().helpStep} 2</span>
                             </div>
                             <div className="step" onClick={this.gotoStep.bind(this, 2)}>
                                 <div className="step-circle" />
                                 <div className={`step-circle-chosen ${this.state.step === 2 ? '' : 'element-hide'}`} />
-                                <span className="step-label" >Step 3</span>
+                                <span className="step-label" >{Localization.getLocalizedString().helpStep} 3</span>
                             </div>
                         </div>
                         <div className="placeholder-1" />
@@ -187,9 +188,9 @@ class HelpOverlay extends Component {
                             <div className="text-instruction-title">
                                 {(() => {
                                     switch (this.state.step) {
-                                        case 0: return "Overview of Raspberry Pi Simulator";
-                                        case 1: return "Prepare an Azure IoT hub and get the device connection string";
-                                        case 2: return "Run the sample app on Pi web simulator";
+                                        case 0: return Localization.getLocalizedString().helpTitle1;
+                                        case 1: return Localization.getLocalizedString().helpTitle2;
+                                        case 2: return Localization.getLocalizedString().helpTitle3;
                                         default: return "";
                                     }
                                 })()}
@@ -197,32 +198,32 @@ class HelpOverlay extends Component {
                             <div className={`text-instruction-description`} ref={(p) => { this.allParagraph = p; }}>
                                 <div className={`paragraph-container ${this.state.step === 0 ? '' : 'element-none'}`}>
                                     <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        1. <span className="bold">Assembly Area</span>. You can see your device status.
+                                        1. <span className="bold">{Localization.getLocalizedString().helpContentAssemblyArea}</span>. {Localization.getLocalizedString().helpContentAssemblyAreaDescription}.
                                 </div>
                                     <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        2. <span className="bold">Coding Area</span>. An online code editor for you to make an app on Raspberry Pi with Node.js
+                                        2. <span className="bold">{Localization.getLocalizedString().helpContentCodingArea}</span>. {Localization.getLocalizedString().helpContentCodingAreaDescription}
                                 </div>
                                     <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        3. <span className="bold">Integrated console window</span>. You can see the output of your app.
+                                        3. <span className="bold">{Localization.getLocalizedString().helpContentConsoleArea}</span>. {Localization.getLocalizedString().helpContentConsoleAreaDescription}.
                                 </div>
                                 </div>
                                 <div className={`paragraph-container ${this.state.step === 1 ? '' : 'element-none'}`}>
                                     <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        1. In the <a target="_blank" href="https://portal.azure.com/">Azure portal</a>, click <span className="bold">New > Internet of Things > IoT Hub</span> to provision a new IoT hub.
+                                        1. {Localization.getLocalizedString().helpContentInThe} <a target="_blank" href="https://portal.azure.com/">{Localization.getLocalizedString().helpContentAzurePortal}</a>, {Localization.getLocalizedString().helpContentClick} <span className="bold">{Localization.getLocalizedString().helpContent1}</span> {Localization.getLocalizedString().helpContent2}.
                                 </div>
                                     <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        2. In the <span className="bold">Device Explorer</span> pane, click <span className="bold">Add</span> to add a device to your IoT hub.
+                                        2. {Localization.getLocalizedString().helpContentInThe} <span className="bold">{Localization.getLocalizedString().helpContent3}</span> {Localization.getLocalizedString().helpContentPane}, {Localization.getLocalizedString().helpContentClick} <span className="bold">{Localization.getLocalizedString().helpContentAdd}</span> {Localization.getLocalizedString().helpContent4}.
                                 </div>
                                     <div className={`paragraph ${this.state.subStep === 2 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        3. Select the device you just created and copy the <span className="bold">primary key of the connection string</span>.
+                                        3. {Localization.getLocalizedString().helpContent5} <span className="bold">{Localization.getLocalizedString().helpContent6}</span>.
                                 </div>
                                 </div>
                                 <div className={`paragraph-container ${this.state.step === 2 ? '' : 'element-none'}`}>
                                     <div className={`paragraph ${this.state.subStep === 0 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        1. Replace the placeholder in <span className="bold">Line 15</span> with the Azure IoT hub <span className="bold">device connection string</span>.
+                                        1. {Localization.getLocalizedString().helpContent7} <span className="bold">{Localization.getLocalizedString().helpContent8}</span> {Localization.getLocalizedString().helpContent9} <span className="bold">{Localization.getLocalizedString().helpContent10}</span>.
                                 </div>
                                     <div className={`paragraph ${this.state.subStep === 1 ? 'paragraph-selected' : ''}`} style={{ transform: "translate(0,-" + this.state.offset[this.state.subStep] + "px" }}>
-                                        2. Click <span className="bold">Run</span> button or type "npm start" in the console window to run the application.
+                                        2. {Localization.getLocalizedString().helpContentClickCapitalize} <span className="bold">{Localization.getLocalizedString().buttonRun}</span> {Localization.getLocalizedString().helpContent11}.
                                 </div>
                                 </div>
                                 <div className={`paragraph-scrollbar`} >
@@ -233,15 +234,15 @@ class HelpOverlay extends Component {
                             </div>
                             <div className="operation">
                                 <div className={`operation-button-1 ${this.state.step === 0 ? 'element-none' : ''}`} onClick={this.prevStep}>
-                                    Back
+                                    {Localization.getLocalizedString().helpButtonBack}
                             </div>
                                 <div className="operation-button-2" onClick={this.nextStep}>
-                                    {this.state.step === this.state.numOfSteps - 1 ? "Got it" : "Next"}
+                                    {this.state.step === this.state.numOfSteps - 1 ? Localization.getLocalizedString().helpButtonGotIt : Localization.getLocalizedString().helpButtonNext}
                                 </div>
                             </div>
                             <div className="link-container">
-                                <a target="_blank" href="https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started">See doc</a>
-                                <a target="_blank" href="https://github.com/Azure-Samples/raspberry-pi-web-simulator">View source</a>
+                                <a target="_blank" href="https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started">{Localization.getLocalizedString().helpLinkSeeDoc}</a>
+                                <a target="_blank" href="https://github.com/Azure-Samples/raspberry-pi-web-simulator">{Localization.getLocalizedString().helpLinkViewSource}</a>
                             </div>
                         </div>
                         <div onWheel={this.changeSubStep} className="picture-instruction">
