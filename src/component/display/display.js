@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Editor from '../editor/editor.js';
 import Console from '../console/console.js'
 import ControlBar from '../controlBar/controlBar.js';
+import Localization from '../../localization/localization';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
@@ -10,8 +11,6 @@ import '../../common.css'
 
 import turnOn from '../../img/turnOn.png';
 import turnOff from '../../img/turnOff.png';
-// const turnOn = 'http://img.wxcha.com/file/201703/03/91b40f2cbc.jpg';
-// const turnOff = 'http://www.peaceticket.com/img/static/e5/e5e6bc409a4201c5d9c3486718cabf70.jpg'
 
 class Display extends Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class Display extends Component {
           <img style={{ display: this.props.turnOn ? 'none' : 'block'}}  src={turnOff} alt='Raspberry PI'/>
         </div>
         <div className='rightPanel'>
-          <div className='codeEditorTitle'>Code Editor</div>
+          <div className='codeEditorTitle'>{Localization.getLocalizedString().codeEditor}</div>
           <Editor className='editor' readOnly={this.props.isRunning} consoleHide={consoleHide} ref='codeEditor'/>
           <ControlBar onStart={this.props.onStart} onStop={this.props.onStop} onReset={this.onReset} isRunning={this.props.isRunning} toggleConsole={this.toggleConsole} consoleHide={consoleHide}/>
           <Console consoleHide={consoleHide} message={this.props.consoleMsg} error={this.props.consoleErr} onStart={this.props.onStart}/>
