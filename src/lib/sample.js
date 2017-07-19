@@ -73,7 +73,9 @@ class Sample {
     stop() {
         window.clearAllIntervals();
         window.clearAllTimeouts();
-        window.azure_iot_device_client.close();
+        if(window.azure_iot_device_client) {
+            window.azure_iot_device_client.close();
+        }
     }
 
     run(option) {
