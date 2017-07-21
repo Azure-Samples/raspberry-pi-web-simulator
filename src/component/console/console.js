@@ -13,9 +13,13 @@ class MyConsole extends Component {
     this.writeLine = this.writeLine.bind(this);
   }
 
-  componentDidUpdate() {
-    this.writeLine(this.props.message);
-    this.writeLine(this.props.error);
+  componentDidUpdate(prevProps) {
+    if(this.props.messageTimeStamp !== prevProps.messageTimeStamp) {
+      this.writeLine(this.props.message);
+    }
+    if(this.props.errorTimeStamp !== prevProps.errorTimeStamp) {
+      this.writeLine(this.props.error);
+    }
   }
 
   writeLine(msg) {
