@@ -86,22 +86,17 @@ class Index extends Component {
   }
 
   onMessage(message) {
-    this.setState(function () {
-      return {
-        console: {
-          consoleMsg: message
-        }
-      };
-    });
+    if(this.consoleCallback) {
+        this.consoleCallback(message);
+    }
   }
   onError(error) {
-    this.setState(function () {
-      return {
-        console: {
-          consoleErr: error.message || JSON.stringify(error)
-        }
-      };
-    });
+    if(this.consoleCallback) {
+        this.consoleCallback(error);
+    }
+  }
+  consoleRegisterCallback = (cb) => {
+    this.consoleCallback = cb;
   }
 
   toggleHelpState = () => {
@@ -122,8 +117,7 @@ class Index extends Component {
           1 === 0 ? (<Toolbar onRunApp={this.runApp} />) : ('')
         }
         <Display
-          consoleMsg={console.consoleMsg}
-          consoleErr={console.consoleErr}
+          consoleRegisterCallback={this.consoleRegisterCallback}
           onStart={this.runApp}
           onStop={this.stopApp}
           isRunning={isRunning}

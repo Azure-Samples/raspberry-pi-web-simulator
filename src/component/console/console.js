@@ -10,15 +10,10 @@ class MyConsole extends Component {
   constructor(props) {
     super(props);
     this.echo = this.echo.bind(this);
-    this.writeLine = this.writeLine.bind(this);
+    this.props.consoleRegisterCallback(this.writeLine);
   }
 
-  componentDidUpdate() {
-    this.writeLine(this.props.message);
-    this.writeLine(this.props.error);
-  }
-
-  writeLine(msg) {
+  writeLine = (msg) => {
     if (!msg) { return; }
     this.myConsole.acceptLine();
     this.myConsole.log(msg);
