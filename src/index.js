@@ -21,6 +21,8 @@ class Index extends Component {
       console: {
         consoleMsg: '',
         consoleErr: '',
+        consoleMsgTimeStamp: null,
+        consoleErrTimeStamp: null
       },
       LEDTurnOn: false,
       isRunning: false,
@@ -89,7 +91,8 @@ class Index extends Component {
     this.setState(function () {
       return {
         console: {
-          consoleMsg: message
+          consoleMsg: message,
+          consoleMsgTimeStamp: Date.now()
         }
       };
     });
@@ -98,7 +101,8 @@ class Index extends Component {
     this.setState(function () {
       return {
         console: {
-          consoleErr: error.message || JSON.stringify(error)
+          consoleErr: error.message || JSON.stringify(error),
+          consoleErrTimeStamp: Date.now()
         }
       };
     });
@@ -124,6 +128,8 @@ class Index extends Component {
         <Display
           consoleMsg={console.consoleMsg}
           consoleErr={console.consoleErr}
+          consoleMsgTimeStamp = {console.consoleMsgTimeStamp}
+          consoleErrTimeStamp = {console.consoleErrTimeStamp}
           onStart={this.runApp}
           onStop={this.stopApp}
           isRunning={isRunning}
