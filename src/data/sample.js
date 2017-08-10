@@ -18,6 +18,7 @@ const LEDPin = 4;
 var sendingMessage = false;
 var messageId = 0;
 var client, sensor;
+var blinkLEDTimeout = null;
 
 function getMessage(cb) {
   messageId++;
@@ -85,8 +86,11 @@ function receiveMessageCallback(msg) {
 
 function blinkLED() {
   // Light up LED for 500 ms
+  if(blinkLEDTimeout) {
+       clearTimeout(blinkLEDTimeout);
+   }
   wpi.digitalWrite(LEDPin, 1);
-  setTimeout(function () {
+  blinkLEDTimeout = setTimeout(function () {
     wpi.digitalWrite(LEDPin, 0);
   }, 500);
 }
