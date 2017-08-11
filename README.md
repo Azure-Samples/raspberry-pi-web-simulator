@@ -1,3 +1,9 @@
+---
+services: iot-hub
+platforms: node
+author: xshi
+---
+
 # Raspberry Pi Web Client Simulator
 
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Microsoft/raspberry-pi-web-simulator)
