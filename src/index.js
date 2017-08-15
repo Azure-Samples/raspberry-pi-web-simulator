@@ -8,6 +8,7 @@ import Localization from './localization/localization';
 import { traceEvent } from './lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
+import ErrorMap from './data/errorMap'
 
 import Sample from './lib/sample.js';
 import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
@@ -98,6 +99,10 @@ class Index extends Component {
     });
   }
   onError(error) {
+    let errorMap = ErrorMap.getInstance();
+    if(errorMap.has(error)) {
+        error = errorMap.get(error);
+    }
     this.setState(function () {
       return {
         console: {

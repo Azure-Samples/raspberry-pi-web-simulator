@@ -18,6 +18,7 @@ Localization.localizedStringList = {
         buttonReset: "Reset",
         consoleWelcomeMessage: "Click `Run` button to run the sample code(When sample is running, code is read-only).\nClick `Stop` button to stop the sample code running.\nClick `Reset` to reset the code.We keep your changes to the editor even you refresh the page.",
         consoleSampleStopped: "Sample stopped",
+        connectionStringMissing: "Connection string is empty or error, please click 'Help' on the top-right to get help",
         codeEditor: "Code Editor",
         helpButton: "Help",
         helpStep: "Step",
