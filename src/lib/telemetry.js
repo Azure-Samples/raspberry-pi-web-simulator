@@ -41,7 +41,7 @@ function getUserId() {
 }
 
 function tracePageViewAI(name, property, metric) {
-  property = Object.assign({referrer:document.referrer,lang:Localization.getLocalizedString().getLanguage()}, property, userProperties);
+  property = Object.assign({referrer:document.referrer, lang:Localization.getLocalizedString().getLanguage()}, property, userProperties);
   AppInsights.trackPageView(null,null,property);
   AppInsights.flush();
 }
