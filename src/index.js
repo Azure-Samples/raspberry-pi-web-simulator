@@ -126,6 +126,7 @@ class Index extends Component {
     return (
       <div className='main'>
         <Banner 
+        reloadMain={this.forceUpdate.bind(this)}
         toggleHelpState = {this.toggleHelpState} />
         {
           1 === 0 ? (<Toolbar onRunApp={this.runApp} />) : ('')

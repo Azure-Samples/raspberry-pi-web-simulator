@@ -1,0 +1,44 @@
+.language {
+    float: right;
+    line-height: 28px;
+    margin-right: 40px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    .language-list {
+        display: none;
+        position: absolute;
+        right: 40px;
+        top: 40px;
+        background:black;
+        width: 130px;
+        z-index: 6;
+
+        span {
+            display: block;
+            text-align: right;
+            padding: 5px 19px 10px 5px;
+
+            &:hover {
+                color: grey;
+            }
+        }
+    }
+
+    .arrow {
+        font-size: 10px;
+        padding-left: 10px;
+    }
+
+    &:hover {
+        color: grey;
+    }
+
+    &:hover .arrow {
+        color: grey;
+    }
+}
+
+.display-show {
+    display: block !important;
+}
