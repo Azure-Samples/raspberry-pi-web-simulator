@@ -1,60 +1,26 @@
+import React, { Component } from 'react';
 import LocalizedStrings from 'react-localization';
 
-class Localization {
+class Localization extends Component {
     static getLocalizedString() {
         if (!this.localizedString) {
             this.localizedString = new LocalizedStrings(Localization.localizedStringList);
         }
         return this.localizedString;
     }
+
+    static getAllLanugages() {
+        let result = new Map();
+        for(let key of Object.keys(Localization.localizedStringList)) {
+            result.set(key,Localization.localizedStringList[key]._displayName);
+        }
+        return result;
+    }
 };
 
 Localization.localizedStringList = {
-    "ja": {
-        pageTitle: "Raspberry Pi Azure IoT Online Simulator",
-        pageTitleMobile: "Raspberry Pi Simulator",
-        buttonRun: "Run",
-        buttonStop: "Stop",
-        buttonReset: "Reset",
-        consoleWelcomeMessage: "Click `Run` button to run the sample code(When sample is running, code is read-only).\nClick `Stop` button to stop the sample code running.\nClick `Reset` to reset the code.We keep your changes to the editor even you refresh the page.",
-        consoleSampleStopped: "アプリケーションが停止しました",
-        codeEditor: "コードエディタ",
-        helpButton: "ヘルプボタン",
-        helpStep: "Step",
-        helpButtonBack: "前のステップ",
-        helpButtonNext: "次のステップ",
-        helpButtonGotIt: "私は理解して",
-        helpLinkSeeDoc: "完全なチュートリアルを見る",
-        helpLinkViewSource: "ソースコードを表示する",
-        helpTitle1: "Raspberry Pi Web シミュレーターの概要",
-        helpTitle2: "IoT Hub の作成",
-        helpTitle3: "Pi Web シミュレーターでのサンプル アプリケーションの実行",
-        helpContentAssemblyArea: "アセンブリ領域",
-        helpContentCodingArea: "コーディング領域",
-        helpContentConsoleArea: "統合コンソールウィンドウ",
-        helpContentAssemblyAreaDescription: "あなたのデバイスの状態を見ることができます",
-        helpContentCodingAreaDescription: "Node.jsでRaspberry Piのアプリを作るためのオンラインコードエディタ",
-        helpContentConsoleAreaDescription: "アプリケーションの出力を見ることができます。",
-        helpContentInThe: "",
-        helpContentClick: "で",
-        helpContentAdd: "追加",
-        helpContentAzurePortal: "Azure portal",
-        helpContentClickCapitalize: "",
-        helpContentPane: "ペイン",
-        helpContent1: "[新規] > [モノのインターネット (IoT)] > [IoT Hub]",
-        helpContent2: "の順にクリックします",
-        helpContent3: "デバイス エクスプローラー",
-        helpContent4: "ウィンドウで [追加] をクリックして、デバイスを IoT Hub に追加します。",
-        helpContent5: "作成したばかりのデバイスを選択し、",
-        helpContent6: "接続文字列の主キーをコピーします。",
-        helpContent7: "",
-        helpContent8: "ライン15",
-        helpContent9: "のプレースホルダをAzure IoTハブデバイスの",
-        helpContent10: "接続文字列に置き換えます。",
-        helpContent11: "[Run] をクリックまたは npm start と入力してアプリケーションを実行します。",
-        altRaspberryPiLogo: "Raspberry Pi logo"
-    },
     "en": {
+        _displayName: "English",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
         buttonRun: "Run",
@@ -99,7 +65,53 @@ Localization.localizedStringList = {
         helpContent11: "button or type \"npm start\" in the console window to run the application",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
+    "ja": {
+        _displayName: "日本語",
+        pageTitle: "Raspberry Pi Azure IoT Online Simulator",
+        pageTitleMobile: "Raspberry Pi Simulator",
+        buttonRun: "Run",
+        buttonStop: "Stop",
+        buttonReset: "Reset",
+        consoleWelcomeMessage: "Click `Run` button to run the sample code(When sample is running, code is read-only).\nClick `Stop` button to stop the sample code running.\nClick `Reset` to reset the code.We keep your changes to the editor even you refresh the page.",
+        consoleSampleStopped: "アプリケーションが停止しました",
+        codeEditor: "コードエディタ",
+        helpButton: "ヘルプ",
+        helpStep: "Step",
+        helpButtonBack: "前のステップ",
+        helpButtonNext: "次のステップ",
+        helpButtonGotIt: "私は理解して",
+        helpLinkSeeDoc: "完全なチュートリアルを見る",
+        helpLinkViewSource: "ソースコードを表示する",
+        helpTitle1: "Raspberry Pi Web シミュレーターの概要",
+        helpTitle2: "IoT Hub の作成",
+        helpTitle3: "Pi Web シミュレーターでのサンプル アプリケーションの実行",
+        helpContentAssemblyArea: "アセンブリ領域",
+        helpContentCodingArea: "コーディング領域",
+        helpContentConsoleArea: "統合コンソールウィンドウ",
+        helpContentAssemblyAreaDescription: "あなたのデバイスの状態を見ることができます",
+        helpContentCodingAreaDescription: "Node.jsでRaspberry Piのアプリを作るためのオンラインコードエディタ",
+        helpContentConsoleAreaDescription: "アプリケーションの出力を見ることができます。",
+        helpContentInThe: "",
+        helpContentClick: "で",
+        helpContentAdd: "追加",
+        helpContentAzurePortal: "Azure portal",
+        helpContentClickCapitalize: "",
+        helpContentPane: "ペイン",
+        helpContent1: "[新規] > [モノのインターネット (IoT)] > [IoT Hub]",
+        helpContent2: "の順にクリックします",
+        helpContent3: "デバイス エクスプローラー",
+        helpContent4: "ウィンドウで [追加] をクリックして、デバイスを IoT Hub に追加します。",
+        helpContent5: "作成したばかりのデバイスを選択し、",
+        helpContent6: "接続文字列の主キーをコピーします。",
+        helpContent7: "",
+        helpContent8: "ライン15",
+        helpContent9: "のプレースホルダをAzure IoTハブデバイスの",
+        helpContent10: "接続文字列に置き換えます。",
+        helpContent11: "[Run] をクリックまたは npm start と入力してアプリケーションを実行します。",
+        altRaspberryPiLogo: "Raspberry Pi logo"
+    },
     "zh-cn": {
+        _displayName: "简体中文",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
         buttonRun: "运行",
@@ -144,6 +156,7 @@ Localization.localizedStringList = {
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
     "zh-tw": {
+        _displayName: "繁体中文",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
         buttonRun: "執行",
@@ -188,6 +201,7 @@ Localization.localizedStringList = {
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
     "es": {
+        _displayName: "Español",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
         buttonRun: "Run",

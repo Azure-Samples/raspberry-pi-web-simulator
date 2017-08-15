@@ -9,6 +9,7 @@
 
 .help:hover {
     color: grey;
+    transition: color 0.5s ease;
 }
 
 .help:visited {

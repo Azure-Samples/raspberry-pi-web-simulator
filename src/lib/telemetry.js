@@ -1,6 +1,7 @@
 import { AppInsights } from 'applicationinsights-js';
 import uuid from 'uuid';
 import ga from 'react-ga';
+import Localization from '../localization/localization'
 
 const pkg = require('../../package.json');
 
@@ -40,13 +41,13 @@ function getUserId() {
 }
 
 function tracePageViewAI(name, property, metric) {
-  property = Object.assign(property || {referrer:document.referrer}, userProperties);
+  property = Object.assign({referrer:document.referrer, lang:Localization.getLocalizedString().getLanguage()}, property, userProperties);
   AppInsights.trackPageView(null,null,property);
   AppInsights.flush();
 }
 
 function traceEvent(name, property, metric) {
-  property = Object.assign(property || {}, userProperties);
+  property = Object.assign({lang:Localization.getLocalizedString().getLanguage()}, property,  userProperties);
   AppInsights.trackEvent(name, property, metric);
   AppInsights.flush();
 }
