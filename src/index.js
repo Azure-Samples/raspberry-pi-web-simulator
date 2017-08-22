@@ -8,7 +8,8 @@ import Localization from './localization/localization';
 import { traceEvent } from './lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import ErrorMap from './data/errorMap'
+import ErrorMap from './data/errorMap';
+import { Route, Link, BrowserRouter, withRouter } from 'react-router-dom';
 
 import Sample from './lib/sample.js';
 import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
@@ -43,6 +44,41 @@ class Index extends Component {
     this.onMessage = this.onMessage.bind(this);
     this.onFinish = this.onFinish.bind(this);
   }
+
+  componentDidMount() {
+      let url_parameter = {};
+      const currLocation = this.props.location.search;
+      let parArr = currLocation.split("?");
+      if (parArr.length > 1) {
+          parArr = parArr[1].split("&");
+          for (let i = 0; i < parArr.length; i++) {
+              const parr = parArr[i].split("=");
+              if (parr[0] === 'lang') {
+                  for (let key of Object.keys(Localization.localizedStringList)) {
+                      if (parr[1] === key) {
+                          Localization.getLocalizedString().setLanguage(key);
+                          this.forceUpdate();
+                          return;
+                      }
+                  }
+                  return;
+              }
+          }
+      }
+
+      let lang = window.localStorage.getItem('lang');
+      if (lang) {
+          for (let key of Object.keys(Localization.localizedStringList)) {
+              if (lang === key) {
+                  Localization.getLocalizedString().setLanguage(key);
+                  this.forceUpdate();
+                  this.props.history.push('?lang='+key);
+                  return;
+              }
+          }
+      }
+  }
+
 
   runApp() {
     if (this.state.isRunning) { return; }
@@ -147,7 +183,10 @@ class Index extends Component {
   }
 }
 
+withRouter(Index);
+
 ReactDOM.render(
-  <Index />,
-  document.getElementById('root')
+    <BrowserRouter>
+        <Route component={Index} />
+    </BrowserRouter>,  document.getElementById('root')
 );

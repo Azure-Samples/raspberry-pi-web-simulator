@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { traceEvent } from '../../lib/telemetry.js';
 import './language.scss';
 import Localization from '../../localization/localization';
+import { Route } from 'react-router-dom';
 
 class Language extends Component {
     constructor(props) {
@@ -40,6 +41,8 @@ class Language extends Component {
         Localization.getLocalizedString().setLanguage(key);
         e.stopPropagation();
         this.props.reloadMain();
+        this.props.history.push('?lang='+key);
+        window.localStorage.setItem('lang', key);
     }
 
     render() {
