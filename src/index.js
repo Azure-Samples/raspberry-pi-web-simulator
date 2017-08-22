@@ -8,7 +8,8 @@ import Localization from './localization/localization';
 import { traceEvent } from './lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import ErrorMap from './data/errorMap'
+import ErrorMap from './data/errorMap';
+import { Route, Link, BrowserRouter } from 'react-router-dom';
 
 import Sample from './lib/sample.js';
 import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
@@ -42,6 +43,15 @@ class Index extends Component {
     this.onError = this.onError.bind(this);
     this.onMessage = this.onMessage.bind(this);
     this.onFinish = this.onFinish.bind(this);
+  }
+
+  componentDidMount() {
+      for(let key of Object.keys(Localization.localizedStringList)) {
+        if(this.props.match.params.lang === key) {
+            Localization.getLocalizedString().setLanguage(key);
+            this.forceUpdate();
+        }
+      }
   }
 
   runApp() {
@@ -148,6 +158,7 @@ class Index extends Component {
 }
 
 ReactDOM.render(
-  <Index />,
-  document.getElementById('root')
+    <BrowserRouter>
+        <Route path="/:lang?" component={Index} />
+    </BrowserRouter>,  document.getElementById('root')
 );
