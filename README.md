@@ -38,7 +38,7 @@ Click [this page](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-
 - Merge with `source` branch with at least one approval. **Do not merge with git tags**
 - Wait for 5 minutes and check your change on [test site](http://raspberry-pi-simulator.azurewebsites.net)
 
-### For production deployement scenario
+### For production deployment scenario
 - Before doing following steps, make sure all changes are tested on test site.
 - Create a tag with `git tag` command. Better name the tag as version number.
 - Use `git push --tags` command to push tag on `source` branch.
