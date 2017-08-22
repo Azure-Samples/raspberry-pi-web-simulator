@@ -241,7 +241,7 @@ class HelpOverlay extends Component {
                                 </div>
                             </div>
                             <div className="link-container">
-                                <a target="_blank" href="https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started">{Localization.getLocalizedString().helpLinkSeeDoc}</a>
+                                <a target="_blank" href={Localization.getLocalizedString().helpDocsLink}>{Localization.getLocalizedString().helpLinkSeeDoc}</a>
                                 <a target="_blank" href="https://github.com/Azure-Samples/raspberry-pi-web-simulator">{Localization.getLocalizedString().helpLinkViewSource}</a>
                             </div>
                         </div>
