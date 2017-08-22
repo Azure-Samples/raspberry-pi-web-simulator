@@ -12,6 +12,23 @@ class Language extends Component {
     }
 
     onButtonClick = (e) => {
+        e.stopPropagation();
+        if(this.state.showList === false) {
+            this.toggleShowList();
+            document.body.addEventListener('mousedown',this.onBodyClick);
+            this.listener = true;
+        }
+    }
+
+    onBodyClick = () => {
+        setTimeout(this.toggleShowList,100);
+    }
+
+    toggleShowList = () => {
+        if(this.listener) {
+            document.body.removeEventListener('mousedown',this.onBodyClick);
+            this.listener = false;
+        }
         this.setState((prev) => {
             return {
                 showList: !prev.showList
@@ -21,11 +38,6 @@ class Language extends Component {
 
     onLanguageClick = (key, e) => {
         Localization.getLocalizedString().setLanguage(key);
-        this.setState((prev) => {
-            return {
-                showList: !prev.showList
-            }
-        });
         e.stopPropagation();
         this.props.reloadMain();
     }
