@@ -63,6 +63,7 @@ Localization.localizedStringList = {
         helpContent9: "with the Azure IoT hub",
         helpContent10: "device connection string",
         helpContent11: "button or type \"npm start\" in the console window to run the application",
+        helpDocsLink: "https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
     "ja": {
@@ -108,6 +109,7 @@ Localization.localizedStringList = {
         helpContent9: "のプレースホルダをAzure IoTハブデバイスの",
         helpContent10: "接続文字列に置き換えます。",
         helpContent11: "[Run] をクリックまたは npm start と入力してアプリケーションを実行します。",
+        helpDocsLink: "https://docs.microsoft.com/ja-jp/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
     "zh-cn": {
@@ -153,9 +155,10 @@ Localization.localizedStringList = {
         helpContent9: "替换的内容是Azure IoT中心内",
         helpContent10: "设备连接字符串",
         helpContent11: "按钮或者输入 \"npm start\" 以运行应用程序",
+        helpDocsLink: "https://docs.microsoft.com/zh-cn/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
-    "zh-tw": {
+    "zh-hk": {
         _displayName: "繁体中文",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
@@ -198,6 +201,7 @@ Localization.localizedStringList = {
         helpContent9: "替換為",
         helpContent10: "連接字串的主索引鍵",
         helpContent11: "按鈕或在控制台窗口中鍵入“npm start”來運行應用程序",
+        helpDocsLink: "https://docs.microsoft.com/zh-hk/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
     "es": {
@@ -243,6 +247,7 @@ Localization.localizedStringList = {
         helpContent9: "con la cadena de conexión del dispositivo de Azure IoT Hub.",
         helpContent10: "cadena de la cadena de conexión",
         helpContent11: "Haga clic en Ejecutar o escriba \"npm start\" para ejecutar la aplicación",
+        helpDocsLink: "https://docs.microsoft.com/es-es/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     }
 };
