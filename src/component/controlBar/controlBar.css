@@ -22,3 +22,7 @@
   float: right;
   height: 24px;
 }
+
+.reset-disable {
+    color: grey !important;
+}
