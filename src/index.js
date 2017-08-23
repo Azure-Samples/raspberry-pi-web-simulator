@@ -8,7 +8,8 @@ import Localization from './localization/localization';
 import { traceEvent } from './lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import ErrorMap from './data/errorMap'
+import ErrorMap from './data/errorMap';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 import Sample from './lib/sample.js';
 import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
@@ -16,8 +17,6 @@ import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
 class Index extends Component {
   constructor(props) {
     super(props);
-    tracePageView();
-    tracePageViewAI();
     this.state = {
       console: {
         consoleMsg: '',
@@ -43,6 +42,40 @@ class Index extends Component {
     this.onMessage = this.onMessage.bind(this);
     this.onFinish = this.onFinish.bind(this);
   }
+
+  componentDidMount() {
+      let needUpdateUrl = false;
+      let useDefault = true;
+      let lang;
+      if (this.props.location && this.props.location.query && this.props.location.query.lang) {
+          useDefault = false;
+          lang = this.props.location.query.lang;
+      } else if (window.localStorage.getItem('lang')) {
+          needUpdateUrl = true;
+          useDefault = false;
+          lang = window.localStorage.getItem('lang')
+      }
+
+      if (!useDefault) {
+          for (let key of Object.keys(Localization.localizedStringList)) {
+              if (lang === key) {
+                  Localization.getLocalizedString().setLanguage(key);
+                  this.forceUpdate();
+              }
+          }
+          if (needUpdateUrl) {
+              let location = Object.assign({},
+                  browserHistory.getCurrentLocation());
+              Object.assign(location.query, {
+                  lang
+              });
+              browserHistory.push(location);
+          }
+      }
+      tracePageView();
+      tracePageViewAI();
+  }
+
 
   runApp() {
     if (this.state.isRunning) { return; }
@@ -148,6 +181,7 @@ class Index extends Component {
 }
 
 ReactDOM.render(
-  <Index />,
-  document.getElementById('root')
+    <Router history={browserHistory} >
+        <Route path="/*" component={Index} />
+    </Router>,  document.getElementById('root')
 );
