@@ -17,8 +17,6 @@ import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
 class Index extends Component {
   constructor(props) {
     super(props);
-    tracePageView();
-    tracePageViewAI();
     this.state = {
       console: {
         consoleMsg: '',
@@ -58,9 +56,13 @@ class Index extends Component {
                       if (parr[1] === key) {
                           Localization.getLocalizedString().setLanguage(key);
                           this.forceUpdate();
+                          tracePageView();
+                          tracePageViewAI();
                           return;
                       }
                   }
+                  tracePageView();
+                  tracePageViewAI();
                   return;
               }
           }
@@ -72,11 +74,15 @@ class Index extends Component {
               if (lang === key) {
                   Localization.getLocalizedString().setLanguage(key);
                   this.forceUpdate();
-                  this.props.history.push('?lang='+key);
+                  this.props.history.push('?lang=' + key);
+                  tracePageView();
+                  tracePageViewAI();
                   return;
               }
           }
       }
+      tracePageView();
+      tracePageViewAI();
   }
 
 
