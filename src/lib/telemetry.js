@@ -41,13 +41,13 @@ function getUserId() {
 }
 
 function tracePageViewAI(name, property, metric) {
-  property = Object.assign({referrer:document.referrer}, property, userProperties);
+  property = Object.assign({referrer:document.referrer, lang:Localization.getLocalizedString().getLanguage()}, property, userProperties);
   AppInsights.trackPageView(null,null,property);
   AppInsights.flush();
 }
 
 function traceEvent(name, property, metric) {
-  property = Object.assign({}, property,  userProperties);
+  property = Object.assign({lang:Localization.getLocalizedString().getLanguage()}, property,  userProperties);
   AppInsights.trackEvent(name, property, metric);
   AppInsights.flush();
 }
