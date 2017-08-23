@@ -112,7 +112,7 @@ Localization.localizedStringList = {
         helpDocsLink: "https://docs.microsoft.com/ja-jp/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
-    "zh-cn": {
+    "zh-CN": {
         _displayName: "简体中文",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
@@ -158,7 +158,7 @@ Localization.localizedStringList = {
         helpDocsLink: "https://docs.microsoft.com/zh-cn/azure/iot-hub/iot-hub-raspberry-pi-web-simulator-get-started",
         altRaspberryPiLogo: "Raspberry Pi logo"
     },
-    "zh-hk": {
+    "zh-HK": {
         _displayName: "繁体中文",
         pageTitle: "Raspberry Pi Azure IoT Online Simulator",
         pageTitleMobile: "Raspberry Pi Simulator",
