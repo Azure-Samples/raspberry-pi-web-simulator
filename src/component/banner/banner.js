@@ -4,7 +4,6 @@ import HelpButton from '../helpButton/helpButton';
 import Language from '../language/language';
 import Localization from '../../localization/localization';
 import './banner.css';
-import { Route } from 'react-router-dom';
 
 class Banner extends Component {
   render() {
@@ -12,9 +11,7 @@ class Banner extends Component {
       <div className="banner">
         <img src={rpiLogo} alt={Localization.getLocalizedString().altRaspberryPiLogo}/>
         <span>{window.innerWidth<=768?Localization.getLocalizedString().pageTitleMobile:Localization.getLocalizedString().pageTitle}</span>
-        <Route render={({history}) => (
-            <Language history={history} reloadMain={this.props.reloadMain} />
-        )} /> 
+        <Language reloadMain={this.props.reloadMain} />
         <HelpButton 
           toggleHelpState = {this.props.toggleHelpState} />
       </div>

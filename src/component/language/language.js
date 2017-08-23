@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { traceEvent } from '../../lib/telemetry.js';
 import './language.scss';
 import Localization from '../../localization/localization';
-import { Route } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 
 class Language extends Component {
     constructor(props) {
@@ -41,7 +41,12 @@ class Language extends Component {
         Localization.getLocalizedString().setLanguage(key);
         e.stopPropagation();
         this.props.reloadMain();
-        this.props.history.push('?lang='+key);
+        let location = Object.assign({},
+            browserHistory.getCurrentLocation());
+        Object.assign(location.query, {
+            lang: key,
+        });
+        browserHistory.push(location);
         window.localStorage.setItem('lang', key);
     }
 

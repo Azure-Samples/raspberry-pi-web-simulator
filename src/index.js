@@ -9,7 +9,7 @@ import { traceEvent } from './lib/telemetry.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import ErrorMap from './data/errorMap';
-import { Route, Link, BrowserRouter, withRouter } from 'react-router-dom';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 import Sample from './lib/sample.js';
 import { tracePageView,tracePageViewAI } from './lib/telemetry.js';
@@ -44,41 +44,32 @@ class Index extends Component {
   }
 
   componentDidMount() {
-      let url_parameter = {};
-      const currLocation = this.props.location.search;
-      let parArr = currLocation.split("?");
-      if (parArr.length > 1) {
-          parArr = parArr[1].split("&");
-          for (let i = 0; i < parArr.length; i++) {
-              const parr = parArr[i].split("=");
-              if (parr[0] === 'lang') {
-                  for (let key of Object.keys(Localization.localizedStringList)) {
-                      if (parr[1] === key) {
-                          Localization.getLocalizedString().setLanguage(key);
-                          this.forceUpdate();
-                          tracePageView();
-                          tracePageViewAI();
-                          return;
-                      }
-                  }
-                  tracePageView();
-                  tracePageViewAI();
-                  return;
-              }
-          }
+      let needUpdateUrl = false;
+      let useDefault = true;
+      let lang;
+      if (this.props.location && this.props.location.query && this.props.location.query.lang) {
+          useDefault = false;
+          lang = this.props.location.query.lang;
+      } else if (window.localStorage.getItem('lang')) {
+          needUpdateUrl = true;
+          useDefault = false;
+          lang = window.localStorage.getItem('lang')
       }
 
-      let lang = window.localStorage.getItem('lang');
-      if (lang) {
+      if (!useDefault) {
           for (let key of Object.keys(Localization.localizedStringList)) {
               if (lang === key) {
                   Localization.getLocalizedString().setLanguage(key);
                   this.forceUpdate();
-                  this.props.history.push('?lang=' + key);
-                  tracePageView();
-                  tracePageViewAI();
-                  return;
               }
+          }
+          if (needUpdateUrl) {
+              let location = Object.assign({},
+                  browserHistory.getCurrentLocation());
+              Object.assign(location.query, {
+                  lang
+              });
+              browserHistory.push(location);
           }
       }
       tracePageView();
@@ -189,10 +180,8 @@ class Index extends Component {
   }
 }
 
-withRouter(Index);
-
 ReactDOM.render(
-    <BrowserRouter>
-        <Route component={Index} />
-    </BrowserRouter>,  document.getElementById('root')
+    <Router history={browserHistory} >
+        <Route path="/*" component={Index} />
+    </Router>,  document.getElementById('root')
 );
