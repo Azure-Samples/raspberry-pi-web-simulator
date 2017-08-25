@@ -4,8 +4,6 @@ import 'react-console-component/main.css';
 import './console.css';
 import Localization from '../../localization/localization';
 
-const welcomeMessage = Localization.getLocalizedString().consoleWelcomeMessage;
-
 class MyConsole extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +47,7 @@ class MyConsole extends Component {
           promptLabel={this.promptLabel}
           value={this.props.error}
           autofocus={false}
-          welcomeMessage={welcomeMessage}
+          welcomeMessage={Localization.getLocalizedString().consoleWelcomeMessage}
           />
       </div>
     );
