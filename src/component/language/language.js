@@ -12,17 +12,25 @@ class Language extends Component {
         };
     }
 
+    componentDidMount() {
+        this.refs.languageButton.addEventListener('mousedown',this.onButtonClick);
+    }
+
+    componentWillUnmount() {
+        this.refs.languageButton.removeEventListener('mousedown',this.onButtonClick);
+    }
+
     onButtonClick = (e) => {
-        e.stopPropagation();
         if(this.state.showList === false) {
             this.toggleShowList();
             document.body.addEventListener('mousedown',this.onBodyClick);
+            e.stopPropagation();
             this.listener = true;
         }
     }
 
-    onBodyClick = () => {
-        setTimeout(this.toggleShowList,100);
+    onBodyClick = (e) => {
+        this.toggleShowList();
     }
 
     toggleShowList = () => {
@@ -56,7 +64,7 @@ class Language extends Component {
             languageElements.push(<span onClick={this.onLanguageClick.bind(this, key)} key={key}>{value}</span>);
         }
         return (
-            <span className="language" onClick={this.onButtonClick}>
+            <span className="language" ref="languageButton">
                 {Localization.getAllLanugages().get(Localization.getLocalizedString().getLanguage())}
                 <span className="arrow">▼</span>
                 <div className={`language-list ${this.state.showList ? "display-show" : ""}`} >
