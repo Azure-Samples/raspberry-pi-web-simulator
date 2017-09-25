@@ -54,6 +54,10 @@ class Editor extends Component {
     });
   }
 
+  componentDidMount() {
+      window.raspberryPiSimulatorAceEditor = this.refs.aceEditor;
+  }
+
   codeChange(value) {
     var tabs = this.state.tabs;
     var tab = tabs[this.state.activeIndex];

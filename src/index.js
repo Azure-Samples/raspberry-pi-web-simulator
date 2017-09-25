@@ -150,30 +150,34 @@ class Index extends Component {
   }
 
   showBubble = () => {
-      let aTags = document.getElementsByTagName("span");
-      let searchText = "'[Your IoT hub device connection string]'";
-      let found;
-      for (var i = 0; i < aTags.length; i++) {
-          if (aTags[i].textContent == searchText) {
-              found = aTags[i];
-              break;
+      if (window.raspberryPiSimulatorAceEditor && window.raspberryPiSimulatorAceEditor.editor) {
+          window.raspberryPiSimulatorAceEditor.editor.scrollToLine(0);
+      }
+      setTimeout(() => {
+          let aTags = document.getElementsByTagName("span");
+          let searchText = "'[Your IoT hub device connection string]'";
+          let found;
+          for (var i = 0; i < aTags.length; i++) {
+              if (aTags[i].textContent == searchText) {
+                  found = aTags[i];
+                  break;
+              }
           }
-      }
-      if(!found) {
-          return;
-      }
-      let bubble = document.createElement("div");
-      bubble.id = 'bubble1';
-      let tri = document.createElement("span");
-      tri.id = 'bubble2';
-      bubble.innerText = "Replace the placeholder with the Azure IoT hub";
-      let cs = document.createElement("div");
-      cs.innerText = "device connection string";
-      cs.style = `
+          if (!found) {
+              return;
+          }
+          let bubble = document.createElement("div");
+          bubble.id = 'bubble1';
+          let tri = document.createElement("span");
+          tri.id = 'bubble2';
+          bubble.innerText = "Replace the placeholder with the Azure IoT hub";
+          let cs = document.createElement("div");
+          cs.innerText = "device connection string";
+          cs.style = `
         font-weight: bold;
       `;
-      bubble.appendChild(cs);
-      bubble.style = `
+          bubble.appendChild(cs);
+          bubble.style = `
         position: absolute;
         left: ${found.offsetLeft + 30}px;
         top: ${found.offsetTop + 40}px;
@@ -189,7 +193,7 @@ class Index extends Component {
         text-align: center;
         line-height: 22px;
         border: 0 solid #666;`;
-      tri.style = `
+          tri.style = `
         position: absolute;
         width: 0;
         height: 0;
@@ -199,22 +203,23 @@ class Index extends Component {
         top: ${found.offsetTop + 10}px;
         border: 15px solid;
         border-color: transparent transparent #0078d7 transparent ;`;
-      let editor = document.getElementsByClassName('ace_content')[0];
-      editor.appendChild(tri);
-      editor.appendChild(bubble);
-      let listener = () => {
-        let element1 = document.getElementById("bubble1");
-        let element2 = document.getElementById("bubble2");
-        element1.style.opacity = 0;
-        element2.style.opacity = 0;
-        setTimeout(()=>{
-            element1.parentNode.removeChild(element1);
-            element2.parentNode.removeChild(element2);
-        },300);
-        
-        document.body.removeEventListener('mousedown',listener);
-      }
-      document.body.addEventListener('mousedown',listener);
+          let editor = document.getElementsByClassName('ace_content')[0];
+          editor.appendChild(tri);
+          editor.appendChild(bubble);
+          let listener = () => {
+              let element1 = document.getElementById("bubble1");
+              let element2 = document.getElementById("bubble2");
+              element1.style.opacity = 0;
+              element2.style.opacity = 0;
+              setTimeout(() => {
+                  element1.parentNode.removeChild(element1);
+                  element2.parentNode.removeChild(element2);
+              }, 300);
+
+              document.body.removeEventListener('mousedown', listener);
+          }
+          document.body.addEventListener('mousedown', listener);
+      }, 0);
   }
 
   toggleHelpState = () => {
