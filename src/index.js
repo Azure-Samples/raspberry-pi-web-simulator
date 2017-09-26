@@ -173,11 +173,11 @@ class Index extends Component {
           bubble.innerText = "Replace the placeholder with the Azure IoT hub";
           let cs = document.createElement("div");
           cs.innerText = "device connection string";
-          cs.style = `
+          cs.style.cssText = `
         font-weight: bold;
       `;
           bubble.appendChild(cs);
-          bubble.style = `
+          bubble.style.cssText = `
         position: absolute;
         left: ${found.offsetLeft + 30}px;
         top: ${found.offsetTop + 40}px;
@@ -193,7 +193,7 @@ class Index extends Component {
         text-align: center;
         line-height: 22px;
         border: 0 solid #666;`;
-          tri.style = `
+          tri.style.cssText = `
         position: absolute;
         width: 0;
         height: 0;
@@ -219,7 +219,7 @@ class Index extends Component {
               document.body.removeEventListener('mousedown', listener);
           }
           document.body.addEventListener('mousedown', listener);
-      }, 0);
+      }, 100);
   }
 
   toggleHelpState = () => {
