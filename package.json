@@ -5,7 +5,7 @@
   "dependencies": {
     "applicationinsights-js": "^1.0.9",
     "azure-iot-common": "^1.1.6",
-    "azure-iot-device": "1.1.7",
+    "azure-iot-device": "1.9.2",
     "bootstrap": "^3.3.7",
     "node-sass": "^4.5.3",
     "paho-mqtt": "^1.0.3",
