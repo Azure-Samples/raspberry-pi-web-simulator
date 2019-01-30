@@ -2,7 +2,7 @@ clone_depth: 5
 environment:
   nodejs_version: "6"
   access_token:
-    secure: A7AnoqgdKeaJOjv+nfFp7O4ZdtqgoQat+3C+Vny0WoP1WtcIwfy/b1yfh3p9qR9i
+    secure: rZWoSlYcV80axNan2nsFYk/iR1jDrffOB1Dl85kRyBCnWYcKXeu+/SUCDCTVHg6d
 branches:
   only:
     - source
