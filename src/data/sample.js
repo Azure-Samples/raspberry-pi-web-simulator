@@ -55,7 +55,7 @@ function sendMessage() {
 }
 
 function onStart(request, response) {
-  console.log('Try to invoke method start(' + request.payload + ')');
+  console.log('Try to invoke method start(' + JSON.stringify(request.payload) + ')');
   sendingMessage = true;
 
   response.send(200, 'Successully start sending message to cloud', function (err) {
@@ -66,7 +66,7 @@ function onStart(request, response) {
 }
 
 function onStop(request, response) {
-  console.log('Try to invoke method stop(' + request.payload + ')');
+  console.log('Try to invoke method stop(' + JSON.stringify(request.payload) + ')');
   sendingMessage = false;
 
   response.send(200, 'Successully stop sending message to cloud', function (err) {
