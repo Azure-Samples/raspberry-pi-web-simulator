@@ -1,7 +1,13 @@
 ---
-services: iot-hub
-platforms: node
-author: xshi
+page_type: sample
+languages:
+  - javascript
+  - nodejs
+products:
+  - azure
+  - azure-iot-hub
+description:
+  - Sample of a simulator for Raspberry Pi.
 ---
 
 # Raspberry Pi Web Client Simulator
