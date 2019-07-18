@@ -6,8 +6,7 @@ languages:
 products:
   - azure
   - azure-iot-hub
-description:
-  - Sample of a simulator for Raspberry Pi.
+description: Sample of a simulator for Raspberry Pi.
 ---
 
 # Raspberry Pi Web Client Simulator
