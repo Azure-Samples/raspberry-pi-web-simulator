@@ -1,19 +1,11 @@
----
-page_type: sample
-languages:
-  - javascript
-  - nodejs
-products:
-  - azure
-  - azure-iot-hub
-description: Sample of a simulator for Raspberry Pi.
----
-
 # Raspberry Pi Web Client Simulator
 
-[![Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Microsoft/raspberry-pi-web-simulator)
+## ARCHIVED
+This repository is not longer maintained and exists for informational reasons only.
 
-Click to visit **[Demo page](https://azure-samples.github.io/raspberry-pi-web-simulator/build/index.html)** This is the preview version and we'd like to have your feedback. You can submitt issues or chat with the product team in the gitter.
+## Run the Simulator
+
+Click to visit **[Demo page](https://azure-samples.github.io/raspberry-pi-web-simulator/build/index.html)**.
 
 ## How to register an IoT hub
 
